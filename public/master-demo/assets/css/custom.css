@@ -1,0 +1,16 @@
+swal2-popup {
+    width: 25em !important;
+}
+.swal2-icon {
+    width: 2em !important;
+    height: 2em !important;
+    margin: 0.5em auto 0.1em !important;
+    border: 0.15em solid !important; ;
+}
+.swal2-icon .swal2-icon-content {
+    font-size: 1.75em !important;
+}
+.swal2-title {
+    padding: .2em 1em 0 !important;
+
+}
