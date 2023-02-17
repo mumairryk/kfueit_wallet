@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+    LoginController,
+    UserController
+};
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+Route::get('/', [LoginController::class, 'auth'])->name('login');
+Route::post('authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
+Route::get('redirectTo', [LoginController::class, 'redirectTo'])->name('redirectTo');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => ['web', 'clear.cache', 'auth']],
+    function () {
+        Route::get('/welcome', [UserController::class, 'welcome'])->name('welcome');
+    });

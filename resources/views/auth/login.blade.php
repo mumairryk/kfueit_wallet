@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>KFUEIT CMS | Login</title>
+    <title>KFUEIT Digital Wallet | Login</title>
     <meta content="Admin Dashboard" name="KFUEIT" />
     <meta content="ICT Department" name="KFUEIT" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -98,10 +98,15 @@
                                     <label class="custom-control-label" for="customControlInline">Remember me</label>
                                 </div>
                             </div>
-                            <div class="col-sm-12 text-right">
+                            <div class="col-sm-8 text-right">
+                                <a class="btn btn-primary w-md waves-effect waves-light" href="">Register
+                                </a>
+                            </div>
+                            <div class="col-sm-4 text-right">
                                 <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log In
                                 </button>
                             </div>
+
 
                             <a href="mailto:software.support@kfueit.edu.pk?subject=CMS Account Not Found">Need Help?</a>
                         </div>
