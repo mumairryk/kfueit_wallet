@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     LoginController,
-    UserController
+    UserController,
+    RegisterController
 };
 
 
@@ -26,6 +27,8 @@ Route::post('authenticate', [LoginController::class, 'authenticate'])->name('aut
 Route::get('redirectTo', [LoginController::class, 'redirectTo'])->name('redirectTo');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
+    /************************  Register Route ***********************/
+Route::any('register',[RegisterController::class,'index'])->name('register');
 Route::group(['middleware' => ['web', 'clear.cache', 'auth']],
     function () {
         Route::get('/welcome', [UserController::class, 'welcome'])->name('welcome');
