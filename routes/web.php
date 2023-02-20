@@ -26,10 +26,11 @@ Route::get('/', [LoginController::class, 'auth'])->name('login');
 Route::post('authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::get('redirectTo', [LoginController::class, 'redirectTo'])->name('redirectTo');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+Route::any('otp',[LoginController::class, 'otpLogin'])->name('otp');
 
     /************************  Register Route ***********************/
 Route::any('register',[RegisterController::class,'index'])->name('register');
-Route::group(['middleware' => ['web', 'clear.cache', 'auth']],
+Route::group(['middleware' => ['web', 'auth']],
     function () {
         Route::get('/welcome', [UserController::class, 'welcome'])->name('welcome');
     });

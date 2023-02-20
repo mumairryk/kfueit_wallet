@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>KFUEIT CMS | @yield('page_title')</title>
+    <title>KFUEIT Wallet | @yield('page_title')</title>
     <link rel="shortcut icon" href="https://kfueit.edu.pk/vendor/core/images/favicon.png">
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
@@ -395,7 +395,7 @@
             <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
                 <div class="d-flex">
                     <div class="breadcrumb">
-                        <a href="{{route('academic.session')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i>
+                        <a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i>
                             Home</a>
                         <span class="breadcrumb-item active">Dashboard</span>
                     </div>

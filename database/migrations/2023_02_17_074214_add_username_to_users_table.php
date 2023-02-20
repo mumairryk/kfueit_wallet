@@ -16,6 +16,7 @@ return new class extends Migration
             $table->datetime('last_login')->nullable()->after('remember_token');
             $table->string('last_login_ip')->nullable()->after('remember_token');
             $table->integer('user_type_id')->nullable()->after('remember_token');
+            $table->unsignedBigInteger('phone_number')->nullable()->after('name');
         });
     }
 
@@ -29,6 +30,7 @@ return new class extends Migration
             $table->dropColumn('last_login');
             $table->dropColumn('last_login_ip');
             $table->dropColumn('user_type_id');
+            $table->dropColumn('phone_number');
         });
     }
 };

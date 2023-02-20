@@ -1,14 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Modules\Academics\Entities\{ProgramLevel, Department};
 use App\Models\User;
-use App\Services\UserService;
 use Illuminate\Http\Request;
-use Modules\Academics\Entities\Menu;
-use Modules\Academics\Entities\RouteWeb;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 use Illuminate\Support\Facades\Auth;
 

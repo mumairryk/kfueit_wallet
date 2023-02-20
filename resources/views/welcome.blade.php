@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('page_title', 'Welcome CMS')
+@section('page_title', 'Welcome')
 @section('content')
-    <h1>Welcome KFUEIT CMS</h1>
+    <h1>Welcome KFUEIT Wallet</h1>
 @endsection

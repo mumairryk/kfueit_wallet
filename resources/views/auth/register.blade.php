@@ -79,27 +79,50 @@
                         <form method="post" action="{{route('register')}}" class="form-horizontal m-t-30">
                             @csrf
                             <div class="form-group form-group-feedback form-group-feedback-left">
-                                <input type="text" class="form-control" required name="username" placeholder="Username">
+                                <input type="text" class="form-control" required name="name" id="name" placeholder="Name" value="{{old('name')}}">
                                 <div class="form-control-feedback">
                                     <i class="icon-user text-muted"></i>
                                 </div>
                             </div>
                             <div class="form-group form-group-feedback form-group-feedback-left">
-                                <input type="email" class="form-control" required name="email" placeholder="Email">
+                                <input type="text" class="form-control" required name="username" placeholder="Username" id="username" value="{{old('username')}}">
+                                <div class="form-control-feedback">
+                                    <i class="icon-user text-muted"></i>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-feedback form-group-feedback-left">
+                                <input type="email" class="form-control" required name="email" placeholder="Email" id="email" value="{{old('email')}}">
                                 <div class="form-control-feedback">
                                     <i class="icon-envelop text-muted"></i>
                                 </div>
                             </div>
                             <div class="form-group form-group-feedback form-group-feedback-left">
-                                <input type="password" class="form-control" required name="password" placeholder="Password">
+                                <input type="password" class="form-control" required name="password" placeholder="Password" id="password" value="{{old('password')}}">
                                 <div class="form-control-feedback">
                                     <i class="icon-lock2 text-muted"></i>
                                 </div>
                             </div>
                             <div class="form-group form-group-feedback form-group-feedback-left">
-                                <input type="password" class="form-control" required name="confirm_password" placeholder="Repeat your password">
+                                <input type="password" class="form-control" required name="confirmed" placeholder="Repeat your password" id="confirmed" value="{{old('confirmed')}}">
                                 <div class="form-control-feedback">
                                     <i class="icon-lock2 text-muted"></i>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-feedback form-group-feedback-left">
+                                <input type="text" class="form-control" required name="phone_number" placeholder="Enter Your Phone Number" id="phone_number" value="{{old('phone_number')}}">
+                                <div class="form-control-feedback">
+                                    <i class="icon-phone text-muted"></i>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-feedback form-group-feedback-left">
+                                <select class="form-control form-control-lg" aria-label="Default select example" name="user_type_id" id="user_type_id">
+                                    <option value="" disabled selected>Select your User Type</option>
+                                    @foreach($usertypes as $item)
+                                        <option {{(old('user_type_id')==$item->id)?'selected':''}} value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                </select>
+                                <div class="form-control-feedback">
+                                    <i class="icon-select2 text-muted"></i>
                                 </div>
                             </div>
                             <div class="form-group row m-t-20">
