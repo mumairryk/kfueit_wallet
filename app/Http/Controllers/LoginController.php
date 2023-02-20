@@ -18,6 +18,7 @@ class LoginController extends Controller
 
     public function __construct(UserService $userService)
     {
+        echo "test";
         $this->userService = $userService;
     }
 
