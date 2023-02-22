@@ -30,6 +30,7 @@ Route::any('otp',[LoginController::class, 'otpLogin'])->name('otp');
 
     /************************  Register Route ***********************/
 Route::any('register',[RegisterController::class,'index'])->name('register');
+    /************************  Register Route ***********************/
 Route::group(['middleware' => ['web', 'auth']],
     function () {
         Route::get('/welcome', [UserController::class, 'welcome'])->name('welcome');
