@@ -45,7 +45,7 @@ class LoginController extends Controller
             $notification= new NotificationService();
             $notification->sendOTPViaEmail($response->email,$otp);
 //            $notification->sendOTPViaSMS($response->phone_number,$otp);
-            return view('auth.otp-verification');
+            return redirect()->route('otp');
         } else {
             return redirect()->back()->with('error', 'The provided credentials do not match our records.');
         }
@@ -53,9 +53,11 @@ class LoginController extends Controller
 
     public  function otpLogin(Request $request){
         if($request->post()){
+
         $request->validate([
             'otp' => ['required','exists:user_auth_codes,code']
         ]);
+
         //check if email exist
        $response = User::where(['email'=>\session('email')])->first();
         #Validation Logic

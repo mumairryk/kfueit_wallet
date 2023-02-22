@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserAuthCode extends Model
 {
     use HasFactory;
-    protected $table='user_types';
+    protected $table='user_auth_codes';
     protected $primaryKey='id';
     public $guarded=[];
 }
