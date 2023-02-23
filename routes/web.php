@@ -34,4 +34,8 @@ Route::any('register',[RegisterController::class,'index'])->name('register');
 Route::group(['middleware' => ['web', 'auth']],
     function () {
         Route::get('/welcome', [UserController::class, 'welcome'])->name('welcome');
+        Route::resource('/generate/challan', 'App\Http\Controllers\GenerateChallanController');
+        //Route::resource('users', 'App\Http\Controllers\UserController');
+
+
     });

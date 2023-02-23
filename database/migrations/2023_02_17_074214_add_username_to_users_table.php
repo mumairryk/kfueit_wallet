@@ -16,7 +16,7 @@ return new class extends Migration
             $table->datetime('last_login')->nullable()->after('remember_token');
             $table->string('last_login_ip')->nullable()->after('remember_token');
             $table->integer('user_type_id')->nullable()->after('remember_token');
-            $table->unsignedBigInteger('phone_number')->nullable()->after('name');
+            $table->text('phone_number')->nullable()->after('name');
         });
     }
 

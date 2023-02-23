@@ -38,10 +38,11 @@
             <div class="card" style="width: 380px;">
                 <div class="card-body">
                     <h3 class="text-center" style="margin-top: 50px;">
-                        <a href="/" class="logo logo-admin"><img src="https://kfueit.edu.pk/uploads/4/ueit-logo-r.png" height="70" alt="logo"></a>
+                        <a href="/" class="logo logo-admin"><img src="https://kfueit.edu.pk/uploads/4/ueit-logo-r.png"
+                                                                 height="70" alt="logo"></a>
                     </h3>
                     <div class="p-3">
-                        <h4 class="font-18 m-b-5 text-center">Welcome !</h4>
+                        <h4 class="font-18 m-b-5 text-center">Welcome to KFUEIT Wallet</h4>
                         <p class="text-muted text-center">Sign in to continue Dashboard.</p>
                         @if(Session::has('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">

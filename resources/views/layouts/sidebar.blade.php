@@ -18,8 +18,8 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<!-- /user menu -->
+                </div>
+                <!-- /user menu -->
                 <!-- Main navigation -->
                 <div class="card card-sidebar-mobile">
                     <ul class="nav nav-sidebar" data-nav-type="accordion">
@@ -28,34 +28,23 @@
                             <div class="text-uppercase font-size-xs line-height-xs">Main</div>
                             <i class="icon-menu" title="Main"></i>
                         </li>
-{{--                        @if(Auth::user()->hasRole('Super Admin'))--}}
-{{--                            <li class="nav-item nav-item-submenu @yield('users_layout_select')">--}}
-{{--                                <a href="#" class="nav-link "><i class="fas fa-users"></i> <span>Users Management</span></a>--}}
-{{--                                <ul class="nav nav-group-sub" data-submenu-title="Layouts">--}}
-{{--                                    @can('permission.list')--}}
-{{--                                        <li class="nav-item"><a href="{{route('permission.list')}}"--}}
-{{--                                                                class="nav-link @yield('permission_layout_select')"> <i--}}
-{{--                                                    class="fas fa-lock"></i> Permissions</a></li>--}}
-{{--                                    @endcan--}}
-{{--                                    @can('role.list')--}}
-{{--                                        <li class="nav-item"><a href="{{route('role.list')}}"--}}
-{{--                                                                class="nav-link @yield('role_layout_select')"> <i--}}
-{{--                                                    class="fas fa-suitcase-rolling"></i> Roles</a></li>--}}
-{{--                                    @endcan--}}
-{{--                                    @can('users.list')--}}
-{{--                                        <li class="nav-item"><a href="{{route('users.list')}}"--}}
-{{--                                                                class="nav-link @yield('user_layout_select')"> <i--}}
-{{--                                                    class="fas fa-user"></i> Users</a></li>--}}
-{{--                                    @endcan--}}
-{{--                                    @can('route_web.list')--}}
-{{--                                        <li class="nav-item"><a href="{{route('route_web.list')}}"--}}
-{{--                                                                class="nav-link @yield('route_web_layout_select')"> <i--}}
-{{--                                                    class="fas fa-route"></i> Web Routes</a></li>--}}
-{{--                                    @endcan--}}
-{{--                                </ul>--}}
-{{--                            </li>--}}
-{{--                        @endif--}}
-{{--                        <li class="nav-item nav-item-submenu @yield('academics_layout_select')">--}}
+
+                        <li class="nav-item nav-item-submenu @yield('users_layout_select')">
+                            <a href="#" class="nav-link "><i class="fas fa-users"></i> <span>Users Management</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="{{route('challan.index') }}" target="_blank"
+                                                        class="nav-link @yield('user_layout_select')"> <i
+                                            class="fas fa-user"></i> Generate Challan </a></li>
+
+                                {{--                                    @can('route_web.list')--}}
+                                {{--                                        <li class="nav-item"><a href="{{route('route_web.list')}}"--}}
+                                {{--                                                                class="nav-link @yield('route_web_layout_select')"> <i--}}
+                                {{--                                                    class="fas fa-route"></i> Web Routes</a></li>--}}
+                                {{--                                    @endcan--}}
+                                {{--                                </ul>--}}
+                                {{--                            </li>--}}
+                                {{--                        @endif--}}
+                                {{--                        <li class="nav-item nav-item-submenu @yield('academics_layout_select')">--}}
 {{--                            <a href="#" class="nav-link "><i class="icon-copy"></i> <span>Academic</span></a>--}}
 {{--                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">--}}
 {{--                                @if(Auth::user()->hasRole(['Super Admin','Registrar']))--}}

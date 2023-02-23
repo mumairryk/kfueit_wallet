@@ -14,6 +14,7 @@ use Modules\Academics\Entities\Teacher;
 use Modules\Academics\Entities\Menu;
 use Modules\Academics\Events\UserCreated;
 use App\Services\NotificationService;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 class LoginController extends Controller
 {
@@ -32,15 +33,18 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
+        //$institutes  = DB::connection('mysql')->select("SELECT * FROM users");
+        //return ($institutes);
+
         $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'exists:users,email'],
             'password' => ['required', 'string', 'min:8'],
         ]);
-        $response = User::where(['email'=>$request['email']])->first();
+        $response = User::where(['email' => $request['email']])->first();
 
-        $remember=($request->has('remember'))?true:false;
-        if (Hash::check($request['password'],$response['password'])){
-            \session()->put(['password'=>$request['password'],'email'=>$request['email'],'remember'=>$remember]);
+        $remember = ($request->has('remember')) ? true : false;
+        if (Hash::check($request['password'], $response['password'])) {
+            \session()->put(['password' => $request['password'], 'email' => $request['email'], 'remember' => $remember]);
             $otp= $this->generateOtp($response->phone_number)->code;
             $notification= new NotificationService();
             $notification->sendOTPViaEmail($response->email,$otp);
@@ -119,6 +123,12 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login')->with('success', 'Logout Successfully');
+    }
+
+    public function test(Request $request, User $user)
+    {
+        echo "test";
+        exit;
     }
 
 }
