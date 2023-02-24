@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('user_info', 50)->nullable();
+            $table->string('rfid_no', 50)->unique()->nullable();
             //
         });
     }
@@ -22,7 +22,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('user_info');
+            $table->dropColumn('rfid_no');
         });
     }
 };

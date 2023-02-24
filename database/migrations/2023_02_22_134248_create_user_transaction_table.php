@@ -29,6 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('generate_challans');
+        Schema::dropIfExists('user_transaction');
     }
 };

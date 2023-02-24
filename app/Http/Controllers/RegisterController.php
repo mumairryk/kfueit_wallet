@@ -19,14 +19,8 @@ class RegisterController extends Controller
                'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
                'password' => ['required', 'string', 'min:8'],
                'confirmed' => ['required', 'string', 'min:8', 'same:password'],
-               'user_type_id' => ['required', 'integer'],
-           ]);
 
-           if ($request['user_type_id'] == '3' && $request['user_type_id'] == '1') {
-               $request->validate([
-                   'user_info' => ['required'],
-               ]);
-           }
+           ]);
 
 
            $data = $request->all();
@@ -46,8 +40,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'username' => $data['username'],
             'phone_number' => $data['phone_number'],
-            'user_type_id' => $data['user_type_id'],
-            'user_info' => $data['user_info']
+
 
         ]);
     }
