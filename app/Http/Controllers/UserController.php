@@ -12,14 +12,14 @@ class UserController extends Controller
     public function welcome(Request $request)
     {
         $user_id = Auth::user()->id;
-        $balance = \App\Helpers\AppHelper::instance()->getuserbalance($user_id);
-        $userTransactions = \App\Helpers\AppHelper::instance()->getusertransaction($user_id, 5);
-        $userTransactions = json_decode($userTransactions);
-        //echo "<pre>";print_r($userTransactions);
+
+        $data['balance']= \App\Helpers\AppHelper::instance()->getuserbalance($user_id);
+        $data['userTransactions'] = \App\Helpers\AppHelper::instance()->getusertransaction($user_id, 5);
+        $data['userTransactions'] = json_decode($data['userTransactions']);
         if ($request->ajax()) {
-            return response()->json($balance);
+            return response()->json($data);
         } else {
-            return view('welcome', compact('balance', 'userTransactions'));
+            return view('welcome', $data);
         }
 
     }

@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('rfid_no', 50)->unique()->nullable();
+            $table->text('rfid_no')->nullable();
             //
         });
     }

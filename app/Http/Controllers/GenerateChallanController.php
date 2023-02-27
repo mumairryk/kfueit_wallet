@@ -47,7 +47,7 @@ class GenerateChallanController extends Controller
         if ($request->post()) {
 
             $request->validate([
-                'amount' => ['required|numeric|gt:0']
+                'amount' => 'required|numeric'
             ]);
 
             $user_id = Auth::user()->id;

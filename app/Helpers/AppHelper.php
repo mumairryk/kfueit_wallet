@@ -41,7 +41,7 @@ class AppHelper
                         ->where('st.status', '=', 1);
                 })
                 ->select('ut.id', 'st.desc as service_desc', 'sd.desc', 'ut.debit', 'ut.credit', 'ut.created_at')
-                ->where('ut.user_id', '=', 7)
+                ->where('ut.user_id', '=', $user_id)
                 ->where('ut.is_approved', '=', 1)
                 ->orderBy('ut.created_at', 'desc')
                 ->get();

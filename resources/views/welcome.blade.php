@@ -87,7 +87,91 @@
             </div>
             <!-- /members online -->
         </div>
+
+        <div class="col-lg-12">
+            <!-- Marketing campaigns -->
+            <div class="card">
+                <div class="card-header bg-success text-white header-elements-sm-inline">
+                    <h6 class="card-title">Top Five Transactions</h6>
+                    <div class="header-elements">
+                        <span class="badge bg-success badge-pill">28 active</span>
+                        <div class="list-icons ml-3">
+                            <div class="list-icons-item dropdown">
+                                <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item"><i class="icon-sync"></i> Update data</a>
+                                    <a href="#" class="dropdown-item"><i class="icon-list-unordered"></i> Detailed log</a>
+                                    <a href="#" class="dropdown-item"><i class="icon-pie5"></i> Statistics</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="#" class="dropdown-item"><i class="icon-cross3"></i> Clear list</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body d-sm-flex align-items-sm-center justify-content-sm-between flex-sm-wrap">
+                    <div class="table-responsive">
+                    <table class="table text-nowrap">
+                        <thead>
+                        <tr>
+                            <th>Sr#</th>
+                            <th>Transaction ID</th>
+                            <th>Service Type</th>
+                            <th>Service Desc</th>
+                            <th>Debit</th>
+                            <th>Credit</th>
+                            <th>Credit	Date</th>
+{{--                            <th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>--}}
+                        </tr>
+                        </thead>
+                        <tbody id="tbody">
+
+                        @forelse($userTransactions as $itme)
+                            <tr>
+                            <td>
+                                <span class="text-muted">{{$loop->iteration}}</span>
+                            </td>
+                            <td><span class="text-muted">{{$itme->id}}</span></td>
+                            <td><span class="text-success-600"> {{is_null($itme->service_desc)?'PR':$itme->service_desc}}</span></td>
+                            <td><span class="text-success-600">{{$itme->desc}}</span></td>
+                            <td><h6 class="font-weight-semibold mb-0">{{$itme->debit}}</h6></td>
+                            <td><h6 class="font-weight-semibold mb-0">{{$itme->credit}}</h6></td>
+                            <td><span class="badge bg-blue">{{date('M d,Y',strtotime($itme->created_at))}}</span></td>
+{{--                            <td class="text-center">--}}
+{{--                                <div class="list-icons">--}}
+{{--                                    <div class="list-icons-item dropdown">--}}
+{{--                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>--}}
+{{--                                        <div class="dropdown-menu dropdown-menu-right">--}}
+{{--                                            <a href="#" class="dropdown-item"><i class="icon-file-stats"></i> View statement</a>--}}
+{{--                                            <a href="#" class="dropdown-item"><i class="icon-file-text2"></i> Edit campaign</a>--}}
+{{--                                            <a href="#" class="dropdown-item"><i class="icon-file-locked"></i> Disable campaign</a>--}}
+{{--                                            <div class="dropdown-divider"></div>--}}
+{{--                                            <a href="#" class="dropdown-item"><i class="icon-gear"></i> Settings</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+
+                        </tr>
+                        @empty
+                            <tr>
+                                <td colspan="8" class="text-center">
+                                    <span class="text-muted">Not Found Transactions</span>
+                                </td>
+
+                            </tr>
+                        @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+            <!-- /marketing campaigns -->
+
+        </div>
     </div>
+
 @endsection
 
 <div class="form-group">
@@ -150,18 +234,29 @@
                 contentType: false,
                 processData: false,
                 success: (data) => {
-                    $("#bal_id").html(data);
+                    $("#bal_id").html(data['balance']);
+                  let html='';
+                    $.each(data['userTransactions'], function( key, value ) {
+                        var date = new Date(value['created_at']);
+                        var options = { day: 'numeric', month: 'short', year: 'numeric' };
+                        var formattedDate = date.toLocaleDateString(undefined, options);
+                       html+='<tr>';
+                       html+=' <td><span class="text-muted">'+ ++key +'</span></td>';
+                       html+='<td><span class="text-muted">'+value['id']+'</span></td>';
+                       html+='<td><span class="text-success-600">'+ ((value['service_desc'] === null) ? 'PR' : value['service_desc'])+'</span></td>';
+                       html+='<td><span class="text-success-600">'+ ((value['desc'] === null) ? ' ' : value['service_desc'])+'</span></td>';
+                       html+='<td><span class="font-weight-semibold mb-0">'+ value['debit']+'</span></td>';
+                       html+='<td><span class="font-weight-semibold mb-0">'+ value['credit']+'</span></td>';
+                       html+='<td><span class="badge bg-blue">'+  formattedDate +'</span></td>';
+                       html+='</tr>';
+                    });
+                    $('#tbody').html(html);
                 },
                 error: function (data) {
                     console.log(data);
                 }
             });
         }
-
-        // setInterval(function() {
-        //     displayHello(5, 10);
-        // }, 1000);
-        //
         function displayHello() {
             let x = a * b;
             alert(x);

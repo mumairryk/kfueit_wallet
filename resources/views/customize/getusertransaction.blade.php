@@ -15,7 +15,7 @@
 
     <div class="container">
         <h3>Financial Transactions</h3>
-        <table class="table table-striped">
+        <table class="table table-striped datatable-button-html5-columns table-bordered  table-hover">
             <thead>
             <tr>
                 <th>Sr#</th>
@@ -65,31 +65,48 @@
                 @php($total_debit=$total_debit+$transaction->debit)
                 @php($total_credit=$total_credit+$transaction->credit)
             @endforeach
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Total</td>
-                <td>{{$total_debit}}</td>
-                <td>{{$total_credit}}</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Balance</td>
-                <td>{{$total_debit-$total_credit}}</td>
-                <td></td>
-                <td></td>
-            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total</td>
+                    <td>{{$total_debit}}</td>
+                    <td>{{$total_credit}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Balance</td>
+                    <td>{{$total_debit-$total_credit}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
     </div>
 
-    {{--<script--}}
-    {{--$("#btn_single_trans").click(function(){--}}
-    {{--alert(''hello);--}}
-    {{--});--}}
-    {{--</script>--}}
 @endsection
+
+@section('custom_js')
+    <script src="{{ asset('master-demo') }}/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script src="{{ asset('master-demo') }}/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script
+        src="{{ asset('master-demo') }}/global_assets/js/plugins/tables/datatables/extensions/jszip/jszip.min.js"></script>
+    <script
+        src="{{ asset('master-demo') }}/global_assets/js/plugins/tables/datatables/extensions/pdfmake/pdfmake.min.js"></script>
+    <script
+        src="{{ asset('master-demo') }}/global_assets/js/plugins/tables/datatables/extensions/pdfmake/vfs_fonts.min.js"></script>
+    <script
+        src="{{ asset('master-demo') }}/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js"></script>
+    <script src="{{ asset('master-demo') }}/global_assets/js/demo_pages/datatables_extension_buttons_html5.js"></script>
+@endsection
+
