@@ -32,9 +32,15 @@
                         <li class="nav-item nav-item-submenu @yield('users_layout_select')">
                             <a href="#" class="nav-link "><i class="fas fa-users"></i> <span>Users Management</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="Layouts">
-                                <li class="nav-item"><a href="{{route('challan.index') }}" target="_blank"
-                                                        class="nav-link @yield('user_layout_select')"> <i
-                                            class="fas fa-user"></i> Generate Challan </a></li>
+                                <li class="nav-item">
+                                    <a href="{{route('getdata') }}" target="_blank"
+                                       class="nav-link @yield('user_layout_select')"> <i
+                                            class="fas fa-user"></i> Transaction History </a>
+                                </li>
+                                {{--                                <li class="nav-item">--}}
+                                {{--                                    <a href="{{route('challan.index') }}" target="_blank"--}}
+                                {{--                                                        class="nav-link @yield('user_layout_select')"> <i--}}
+                                {{--                                            class="fas fa-user"></i> Generate Challan </a></li>--}}
 
                                 {{--                                    @can('route_web.list')--}}
                                 {{--                                        <li class="nav-item"><a href="{{route('route_web.list')}}"--}}

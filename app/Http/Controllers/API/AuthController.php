@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use App\Models\User;
 use App\Services\NotificationService;
@@ -15,6 +16,7 @@ class AuthController extends BaseController
 {
     public function signin(Request $request)
     {
+
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $authUser = Auth::user();
             $success['token'] = $authUser->createToken('MyAuthApp')->plainTextToken;
@@ -72,5 +74,19 @@ class AuthController extends BaseController
         }
 
     }
+
+    public function gettoken(Request $request)
+    {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $authUser = Auth::user();
+            $success['token'] = $authUser->createToken('MyAuthApp')->plainTextToken;
+            unset($authUser['password']);
+            $success['user_detail'] = $authUser;
+            return $this->sendResponse($success, 'success');
+        } else {
+            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+        }
+    }
+
 
 }

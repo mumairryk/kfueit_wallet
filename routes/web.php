@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     LoginController,
     UserController,
-    RegisterController
+    RegisterController,
+    GenerateChallanController
 };
 
 
@@ -35,6 +36,10 @@ Route::group(['middleware' => ['web', 'auth']],
     function () {
         Route::get('/welcome', [UserController::class, 'welcome'])->name('welcome');
         Route::resource('/generate/challan', 'App\Http\Controllers\GenerateChallanController');
+        Route::any('getdata', [GenerateChallanController::class, 'get_user_history'])->name('getdata');
+        Route::any('getsingletrans/{id}', [GenerateChallanController::class, 'get_single_transanction_history'])->name('getsingledata');
+        Route::get('balance', [UserController::class, 'show_balance'])->name('balance.show');
+        //  Route::get('users', [UserController::class, 'show_data'])->name('users.show');
         //Route::resource('users', 'App\Http\Controllers\UserController');
 
 

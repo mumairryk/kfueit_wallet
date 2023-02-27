@@ -75,7 +75,7 @@
 <!-- Main navbar -->
 <div class="navbar navbar-expand-md navbar-dark">
     <div class="navbar-brand">
-        <a href="#" class="d-inline-block">
+        <a href="{{route('welcome') }}" class="d-inline-block">
             <img src="{{asset('master-demo/images/')}}/logo_light.png" alt="">
         </a>
     </div>
@@ -521,6 +521,7 @@
 <script>
 
     $(document).ready(function () {
+
         var dark = $('.content');
 
         $(document).ajaxStart(function () {
@@ -553,7 +554,9 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
-
+    $("#myBtn").click(function () {
+        $("#myModal").modal();
+    });
 
     $(function () {
         $(document).on('click', '#delete', function (e) {

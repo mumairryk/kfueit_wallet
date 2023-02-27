@@ -28,6 +28,7 @@ class LoginController extends Controller
 
     public function auth(Request $request, User $user)
     {
+
         return view("auth.login");
     }
 
@@ -57,11 +58,9 @@ class LoginController extends Controller
 
     public  function otpLogin(Request $request){
         if($request->post()){
-
         $request->validate([
             'otp' => ['required','exists:user_auth_codes,code']
         ]);
-
         //check if email exist
        $response = User::where(['email'=>\session('email')])->first();
         #Validation Logic
@@ -75,6 +74,7 @@ class LoginController extends Controller
             return redirect()->route('otp')->with('error', 'Your OTP has been expired');
         }
        $user = User::whereId($response->id)->first();
+            //echo "<pre>";print_r($user);exit;
         if($user) {
             // Expire The OTP
             $verificationCode->update([
@@ -83,7 +83,8 @@ class LoginController extends Controller
         }
         Auth::guard()->login($response,\session('remember'));
         Auth::shouldUse('auth');
-        return redirect('welcome')->with('success', 'Login Successfully');
+
+            return redirect('welcome')->with('success', 'Login Successfully');
         }
         return view('auth.otp-verification');
     }
