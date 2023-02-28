@@ -2,6 +2,7 @@
 @section('page_title', 'Welcome')
 @section('custom_css')
     <!-- Core JS files -->
+
     <script src="{{asset('master-demo')}}/global_assets/js/main/jquery.min.js"></script>
     <script src="{{asset('master-demo')}}/global_assets/js/main/bootstrap.bundle.min.js"></script>
     <script src="{{asset('master-demo')}}/global_assets/js/plugins/loaders/blockui.min.js"></script>
@@ -149,7 +150,7 @@
             <!--Debit -->
             <div class="card">
                 <div class="card-header bg-white header-elements-inline">
-                    <h6 class="card-title">Top Five Debit</h6>
+                    <h6 class="card-title">Top Five Credit</h6>
                     <div class="header-elements">
                         <div class="list-icons">
                             <a class="list-icons-item" data-action="collapse"></a>
@@ -179,7 +180,7 @@
             <!--Credit -->
             <div class="card">
                 <div class="card-header bg-white header-elements-inline">
-                    <h6 class="card-title">Top Five Credit</h6>
+                    <h6 class="card-title">Top Five Debit</h6>
                     <div class="header-elements">
                         <div class="list-icons">
                             <a class="list-icons-item" data-action="collapse"></a>
@@ -193,7 +194,7 @@
                             <th>Sr#</th>
                             <th>Transaction ID</th>
                             <th>Service Type</th>
-                            <th>Service Desc</th>
+
                             <th>Debit</th>
                             <th>Credit</th>
                             <th>Credit	Date</th>
@@ -223,7 +224,7 @@
                             <th>Sr#</th>
                             <th>Transaction ID</th>
                             <th>Service Type</th>
-                            <th>Service Desc</th>
+
                             <th>Debit</th>
                             <th>Credit</th>
                             <th>Credit	Date</th>
@@ -310,7 +311,7 @@
                         html += ' <td><span class="text-muted">' + ++key + '</span></td>';
                         html += '<td><span class="text-muted">' + value['id'] + '</span></td>';
                         html += '<td><span class="">' + ((value['service_desc'] === null) ? 'PR' : value['service_desc']) + '</span></td>';
-                        html += '<td><span class="">' + ((value['desc'] === null) ? ' ' : value['service_desc']) + '</span></td>';
+                        html += '<td><span class="">' + ((value['desc'] === null) ? ' ' : value['desc']) + '</span></td>';
                         html += '<td><span class="font-weight-semibold mb-0">' + ((value['debit'] === 0) ? ' ' : value['debit']) + '</span></td>';
                         html += '<td><span class="font-weight-semibold mb-0">' + ((value['credit'] === 0) ? ' ' : value['credit']) + '</span></td>';
                         html += '<td><span class="badge bg-blue">' + formattedDate + '</span></td>';
@@ -319,7 +320,7 @@
                     $('#tbody').html(html);
                     var html1 = "";
                     $.each(data['userPendingChallahData'], function (key, value) {
-                        console.log(value['debit']);
+                        console.log(value['desc']);
                         var date = new Date(value['created_at']);
                         var options = {day: 'numeric', month: 'short', year: 'numeric'};
                         var formattedDate = date.toLocaleDateString(undefined, options);
@@ -327,7 +328,7 @@
                         html1 += ' <td><span class="text-muted">' + ++key + '</span></td>';
                         html1 += '<td><span class="text-muted">' + value['id'] + '</span></td>';
                         html1 += '<td><span class="">' + ((value['service_desc'] === null) ? 'PR' : value['service_desc']) + '</span></td>';
-                        html1 += '<td><span class="">' + ((value['desc'] === null) ? ' ' : value['service_desc']) + '</span></td>';
+
                         html1 += '<td><span class="font-weight-semibold mb-0">' + value['debit'] + '</span></td>';
                         html1 += '<td><span class="font-weight-semibold mb-0"></span></td>';
                         html1 += '<td><span class="badge bg-blue">' + formattedDate + '</span></td>';
@@ -345,7 +346,7 @@
                         htmlc += ' <td><span class="text-muted">' + ++key + '</span></td>';
                         htmlc += '<td><span class="text-muted">' + value['id'] + '</span></td>';
                         htmlc += '<td><span class="">' + ((value['service_desc'] === null) ? 'PR' : value['service_desc']) + '</span></td>';
-                        htmlc += '<td><span class="">' + ((value['desc'] === null) ? ' ' : value['service_desc']) + '</span></td>';
+                        htmlc += '<td><span class="">' + ((value['desc'] === null) ? ' ' : value['desc']) + '</span></td>';
                         htmlc += '<td><span class="font-weight-semibold mb-0"></span></td>';
                         htmlc += '<td><span class="font-weight-semibold mb-0">' + value['credit'] + '</span></td>';
                         htmlc += '<td><span class="badge bg-blue">' + formattedDate + '</span></td>';
@@ -363,7 +364,7 @@
                         htmld += ' <td><span class="text-muted">' + ++key + '</span></td>';
                         htmld += '<td><span class="text-muted">' + value['id'] + '</span></td>';
                         htmld += '<td><span class="">' + ((value['service_desc'] === null) ? 'PR' : value['service_desc']) + '</span></td>';
-                        htmld += '<td><span class="">' + ((value['desc'] === null) ? ' ' : value['service_desc']) + '</span></td>';
+
                         htmld += '<td><span class="font-weight-semibold mb-0">'+ value['debit'] +'</span></td>';
                         htmld += '<td><span class="font-weight-semibold mb-0"></span></td>';
                         htmld += '<td><span class="badge bg-blue">' + formattedDate + '</span></td>';

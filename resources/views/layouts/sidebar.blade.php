@@ -30,27 +30,28 @@
                         </li>
 
                         <li class="nav-item nav-item-submenu @yield('wallet_layout_select')">
-                            <a href="#" class="nav-link "><i class="fas fa-users"></i> <span>Wallet Management</span></a>
+                            <a href="#" class="nav-link "><i class="fas fa-users"></i>
+                                <span>Wallet Management</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="Layouts">
                                 <li class="nav-item">
-                                    <a href="{{route('getdata') }}" target="_blank"
+                                    <a href="{{route('getdata') }}" target=""
                                        class="nav-link @yield('user_layout_select')"> <i
                                             class="fas fa-dot-circle"></i> Transaction History </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('debit.history') }}" target="_blank"
+                                    <a href="{{route('debit.history') }}" target=""
                                        class="nav-link @yield('user_layout_select')"> <i
                                             class="fas fa-dot-circle"></i> Debit History </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('credit.history') }}" target="_blank"
+                                    <a href="{{route('credit.history') }}" target=""
                                        class="nav-link @yield('user_layout_select')"> <i
                                             class="fas fa-dot-circle"></i> Credit History </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('pending.challah') }}" target="_blank"
+                                    <a href="{{route('pending.challah') }}" target=""
                                        class="nav-link @yield('user_layout_select')"> <i
-                                            class="fas fa-dot-circle"></i> Pending Transaction  </a>
+                                            class="fas fa-dot-circle"></i> Pending Transaction </a>
                                 </li>
                                 {{--                                <li class="nav-item">--}}
                                 {{--                                    <a href="{{route('challan.index') }}" target="_blank"--}}

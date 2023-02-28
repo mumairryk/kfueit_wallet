@@ -20,6 +20,7 @@ class UserController extends Controller
         $data['userPendingChallah'] = \App\Helpers\AppHelper::instance()->getPendingChallah($user_id);
         $data['userPendingChallahData'] = \App\Helpers\AppHelper::instance()->getuserPendingChallah($user_id, 5);
         $data['userCreditData'] = \App\Helpers\AppHelper::instance()->getUserCredit($user_id, 5);
+
         $data['userDebitData'] = \App\Helpers\AppHelper::instance()->getUserDebit($user_id, 5);
         $data['userTransactions'] = json_decode($data['userTransactions']);
         $data['userPendingChallahData'] = json_decode($data['userPendingChallahData']);
@@ -34,8 +35,32 @@ class UserController extends Controller
 
     }
 
-    public function pendingChallah(){}
-    public function creditHistory(){}
-    public function debitHistory(){}
+    public function pendingChallah()
+    {
+
+        $user_id = Auth::user()->id;
+        $data['userPendingChallahData'] = \App\Helpers\AppHelper::instance()->getuserPendingChallah($user_id, 1);
+        $userTransactions = json_decode($data['userPendingChallahData']);
+        return view('customize.userpendingchallah', compact('userTransactions'));
+    }
+
+    public function creditHistory()
+    {
+        $user_id = Auth::user()->id;
+        $data['userCreditData'] = \App\Helpers\AppHelper::instance()->getUserCredit($user_id, 1);
+        $userTransactions = json_decode($data['userCreditData']);
+        //echo "<pre>";print_r($userTransactions);exit;
+        return view('customize.credithistory', compact('userTransactions'));
+    }
+
+    public function debitHistory()
+    {
+        $user_id = Auth::user()->id;
+        $data['userDebitData'] = \App\Helpers\AppHelper::instance()->getUserDebit($user_id, 1);
+        $userTransactions = json_decode($data['userDebitData']);
+        //echo "<pre>";print_r($userTransactions);exit;
+        return view('customize.debithistory', compact('userTransactions'));
+
+    }
 
 }
