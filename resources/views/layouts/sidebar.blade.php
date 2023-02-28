@@ -35,7 +35,22 @@
                                 <li class="nav-item">
                                     <a href="{{route('getdata') }}" target="_blank"
                                        class="nav-link @yield('user_layout_select')"> <i
-                                            class="fas fa-user"></i> Transaction History </a>
+                                            class="fas fa-dot-circle"></i> Transaction History </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('debit.history') }}" target="_blank"
+                                       class="nav-link @yield('user_layout_select')"> <i
+                                            class="fas fa-dot-circle"></i> Debit History </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('credit.history') }}" target="_blank"
+                                       class="nav-link @yield('user_layout_select')"> <i
+                                            class="fas fa-dot-circle"></i> Credit History </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('pending.challah') }}" target="_blank"
+                                       class="nav-link @yield('user_layout_select')"> <i
+                                            class="fas fa-dot-circle"></i> Pending Transaction  </a>
                                 </li>
                                 {{--                                <li class="nav-item">--}}
                                 {{--                                    <a href="{{route('challan.index') }}" target="_blank"--}}

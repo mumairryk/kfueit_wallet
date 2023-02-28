@@ -34,5 +34,8 @@ class UserController extends Controller
 
     }
 
+    public function pendingChallah(){}
+    public function creditHistory(){}
+    public function debitHistory(){}
 
 }

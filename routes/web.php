@@ -41,6 +41,8 @@ Route::group(['middleware' => ['web', 'auth']],
         Route::get('balance', [UserController::class, 'show_balance'])->name('balance.show');
         //  Route::get('users', [UserController::class, 'show_data'])->name('users.show');
         //Route::resource('users', 'App\Http\Controllers\UserController');
-
+        Route::get('pending/challah',[UserController::class,'pendingChallah'])->name('pending.challah');
+        Route::get('credit/history',[UserController::class,'creditHistory'])->name('credit.history');
+        Route::get('debit/history',[UserController::class,'debitHistory'])->name('debit.history');
 
     });
