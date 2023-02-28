@@ -5,6 +5,7 @@ namespace App\Helpers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
+
 class AppHelper
 {
     public static function instance()
@@ -43,6 +44,43 @@ class AppHelper
                 ->select('ut.id', 'st.desc as service_desc', 'sd.desc', 'ut.debit', 'ut.credit', 'ut.created_at')
                 ->where('ut.user_id', '=', $user_id)
                 ->where('ut.is_approved', '=', 1)
+                ->orderBy('ut.created_at', 'desc')
+                ->get();
+            return "$userTransactions";
+
+        }
+    }
+    public function getuserPendingChallah($user_id, $limit)
+    {
+        if ($limit != 1) {
+
+            $userTransactions = DB::table('user_transaction as ut')
+                ->leftJoin('user_transaction_detail as utd', 'utd.user_transaction_id', '=', 'ut.id')
+                ->leftJoin('services_detail as sd', 'sd.id', '=', 'ut.service_id')
+                ->leftJoin('service_type as st', function ($join) {
+                    $join->on('st.id', '=', 'sd.service_type')
+                        ->where('st.status', '=', 1);
+                })
+                ->select('ut.id', 'st.desc as service_desc', 'sd.desc', 'ut.debit', 'ut.credit', 'ut.created_at')
+                ->where('ut.user_id', '=', $user_id)
+                ->where('ut.is_approved', '=', 0)
+                ->orderBy('ut.created_at', 'desc')
+                ->limit($limit)
+                ->get();
+
+            return "$userTransactions";
+        } else {
+
+            $userTransactions = DB::table('user_transaction as ut')
+                ->leftJoin('user_transaction_detail as utd', 'utd.user_transaction_id', '=', 'ut.id')
+                ->leftJoin('services_detail as sd', 'sd.id', '=', 'ut.service_id')
+                ->leftJoin('service_type as st', function ($join) {
+                    $join->on('st.id', '=', 'sd.service_type')
+                        ->where('st.status', '=', 1);
+                })
+                ->select('ut.id', 'st.desc as service_desc', 'sd.desc', 'ut.debit', 'ut.credit', 'ut.created_at')
+                ->where('ut.user_id', '=', $user_id)
+                ->where('ut.is_approved', '=', 0)
                 ->orderBy('ut.created_at', 'desc')
                 ->get();
             return "$userTransactions";
@@ -105,5 +143,60 @@ class AppHelper
             [1, $user_id, 1, $user_id, 1]
         )->balance;
         return "$balance";
+    }
+
+    public function getDebit($user_id){
+      return   DB::table('user_transaction')
+            ->selectRaw('debit')
+            ->where('is_approved', '=', 1)
+            ->where('user_id', '=', $user_id)
+            ->where('status', '=', 1)
+            ->sum('debit');
+    }
+    public function getCredit($user_id){
+      return   DB::table('user_transaction')
+            ->selectRaw('credit')
+            ->where('user_id', '=', $user_id)
+            ->where('status', '=', 1)
+            ->sum('credit');
+    }
+    public function getPendingChallah($user_id){
+      return   DB::table('user_transaction')
+            ->selectRaw('debit')
+          ->where('is_approved', '=', 0)
+            ->where('user_id', '=', $user_id)
+            ->where('status', '=', 1)
+            ->sum('debit');
+    }
+
+    public function getUserCredit($user_id,$limit){
+        if ($limit != 1) {
+            return DB::table('user_transaction as ut')
+                ->select('ut.id', 'st.desc as service_desc', 'sd.desc', 'ut.credit', 'ut.created_at')
+                ->join('user_transaction_detail as utd', 'utd.user_transaction_id', '=', 'ut.id')
+                ->join('services_detail as sd', 'sd.id', '=', 'ut.service_id')
+                ->join('service_type as st', function ($join) {
+                    $join->on('st.id', '=', 'sd.service_type')
+                        ->where('st.status', '=', 1);
+                })
+                ->where('ut.user_id', '=', $user_id)
+                ->where('ut.is_approved', '=', 1)
+                ->orderBy('ut.created_at', 'desc')
+                ->limit($limit)
+                ->get();
+        }else{
+            return DB::table('user_transaction as ut')
+                ->select('ut.id', 'st.desc as service_desc', 'sd.desc', 'ut.credit', 'ut.created_at')
+                ->join('user_transaction_detail as utd', 'utd.user_transaction_id', '=', 'ut.id')
+                ->join('services_detail as sd', 'sd.id', '=', 'ut.service_id')
+                ->join('service_type as st', function ($join) {
+                    $join->on('st.id', '=', 'sd.service_type')
+                        ->where('st.status', '=', 1);
+                })
+                ->where('ut.user_id', '=', $user_id)
+                ->where('ut.is_approved', '=', 1)
+                ->orderBy('ut.created_at', 'desc')
+                ->get();
+        }
     }
 }
