@@ -20,7 +20,7 @@ class UserController extends Controller
         $data['userPendingChallah'] = \App\Helpers\AppHelper::instance()->getPendingChallah($user_id);
         $data['userPendingChallahData'] = \App\Helpers\AppHelper::instance()->getuserPendingChallah($user_id, 5);
         $data['userCreditData'] = \App\Helpers\AppHelper::instance()->getUserCredit($user_id, 5);
-        $data['userDebitData'] = \App\Helpers\AppHelper::instance()->getUserCredit($user_id, 5);
+        $data['userDebitData'] = \App\Helpers\AppHelper::instance()->getUserDebit($user_id, 5);
         $data['userTransactions'] = json_decode($data['userTransactions']);
         $data['userPendingChallahData'] = json_decode($data['userPendingChallahData']);
         $data['userCreditData'] = json_decode($data['userCreditData']);
