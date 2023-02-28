@@ -28,6 +28,9 @@
     <script src="{{asset('master-demo')}}/global_assets/js/plugins/loaders/blockui.min.js"></script>
     <!-- /theme JS files -->
 @endsection
+@section('action_btn')
+    <button type="button" class="btn btn-outline-info btn-sm" id="myBtn"> <i class="icon-add mr-2"></i>Add Balance</button>
+@endsection
 @section('content')
     <div class="row">
         <div class="col-lg-3">
@@ -42,8 +45,6 @@
                     <div>
                         Available balance
                         <div class="font-size-sm opacity-100">
-
-                            <button type="button" class="btn btn-default btn-sm" id="myBtn">Add Balance</button>
                         </div>
                     </div>
                 </div>
@@ -115,7 +116,7 @@
 
     <div class="row row-sortable">
         <div class="col-md-12">
-            <!-- Marketing campaigns -->
+            <!-- Transactions -->
             <div class="card">
                 <div class="card-header bg-white header-elements-inline">
                     <h6 class="card-title">Top Five Transactions</h6>
@@ -143,10 +144,12 @@
                     </table>
                 </div>
             </div>
-            <!-- /marketing campaigns -->
+            <!--Transactions -->
+
+            <!--Debit -->
             <div class="card">
                 <div class="card-header bg-white header-elements-inline">
-                    <h6 class="card-title">Top Five Credit</h6>
+                    <h6 class="card-title">Top Five Debit</h6>
                     <div class="header-elements">
                         <div class="list-icons">
                             <a class="list-icons-item" data-action="collapse"></a>
@@ -171,6 +174,39 @@
                     </table>
                 </div>
             </div>
+            <!--Debit-->
+
+            <!--Credit -->
+            <div class="card">
+                <div class="card-header bg-white header-elements-inline">
+                    <h6 class="card-title">Top Five Credit</h6>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table text-nowrap">
+                        <thead>
+                        <tr>
+                            <th>Sr#</th>
+                            <th>Transaction ID</th>
+                            <th>Service Type</th>
+                            <th>Service Desc</th>
+                            <th>Debit</th>
+                            <th>Credit</th>
+                            <th>Credit	Date</th>
+                        </tr>
+                        </thead>
+                        <tbody id="d-tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--Credit-->
+
+            <!--Pending Challah-->
             <div class="card">
                 <div class="card-header bg-white header-elements-inline">
                     <h6 class="card-title">Top Five Pending Challah</h6>
@@ -198,6 +234,8 @@
                     </table>
                 </div>
             </div>
+            <!--Pending Challah-->
+
         </div>
     </div>
 
@@ -208,7 +246,7 @@
         <div class="modal-dialog">
 
             <!-- Modal content-->
-            <div class="modal-content col-md-6">
+            <div class="modal-content col-md-12">
 
                 <div class="modal-body" style="">
                     <form method="post" action="{{route('challan.store') }}" class="form-horizontal m-t-30">
@@ -296,6 +334,8 @@
                         html1 += '</tr>';
                     });
                     $('#p-tbody').html(html1);
+
+                    // Credit
                     var htmlc = "";
                     $.each(data['userCreditData'], function (key, value) {
                         var date = new Date(value['created_at']);
@@ -312,6 +352,26 @@
                         htmlc += '</tr>';
                     });
                     $('#c-tbody').html(htmlc);
+                    // Credit
+                    // Debit
+                    var htmld = "";
+                    $.each(data['userDebitData'], function (key, value) {
+                        var date = new Date(value['created_at']);
+                        var options = {day: 'numeric', month: 'short', year: 'numeric'};
+                        var formattedDate = date.toLocaleDateString(undefined, options);
+                        htmld += '<tr>';
+                        htmld += ' <td><span class="text-muted">' + ++key + '</span></td>';
+                        htmld += '<td><span class="text-muted">' + value['id'] + '</span></td>';
+                        htmld += '<td><span class="">' + ((value['service_desc'] === null) ? 'PR' : value['service_desc']) + '</span></td>';
+                        htmld += '<td><span class="">' + ((value['desc'] === null) ? ' ' : value['service_desc']) + '</span></td>';
+                        htmld += '<td><span class="font-weight-semibold mb-0">'+ value['debit'] +'</span></td>';
+                        htmld += '<td><span class="font-weight-semibold mb-0"></span></td>';
+                        htmld += '<td><span class="badge bg-blue">' + formattedDate + '</span></td>';
+                        htmld += '</tr>';
+                    });
+                    $('#d-tbody').html(htmld);
+                    // Debit
+
                     $('#userDebit').html('<h3 class="font-weight-semibold mb-0">' + data['userDebit'] + '</h3>')
                     $('#userCredit').html('<h3 class="font-weight-semibold mb-0">' + data['userCredit'] + '</h3>')
                     $('#userPendingChallah').html('<h3 class="font-weight-semibold mb-0">' + data['userPendingChallah'] + '</h3>')

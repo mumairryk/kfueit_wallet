@@ -171,7 +171,7 @@ class AppHelper
 
     public function getUserCredit($user_id,$limit){
         if ($limit != 1) {
-            return DB::table('user_transaction as ut')
+            return  DB::table('user_transaction as ut')
                 ->select('ut.id', 'st.desc as service_desc', 'sd.desc', 'ut.credit', 'ut.created_at')
                 ->join('user_transaction_detail as utd', 'utd.user_transaction_id', '=', 'ut.id')
                 ->join('services_detail as sd', 'sd.id', '=', 'ut.service_id')
@@ -179,9 +179,11 @@ class AppHelper
                     $join->on('st.id', '=', 'sd.service_type')
                         ->where('st.status', '=', 1);
                 })
-                ->where('ut.user_id', '=', $user_id)
+                ->where('ut.user_id', '=', 7)
                 ->where('ut.is_approved', '=', 1)
-                ->orderBy('ut.created_at', 'desc')
+                ->whereNotNull('st.desc')
+                ->where('ut.service_id', '!=', 0)
+                ->orderByDesc('ut.created_at')
                 ->limit($limit)
                 ->get();
         }else{

@@ -29,8 +29,8 @@
                             <i class="icon-menu" title="Main"></i>
                         </li>
 
-                        <li class="nav-item nav-item-submenu @yield('users_layout_select')">
-                            <a href="#" class="nav-link "><i class="fas fa-users"></i> <span>Users Management</span></a>
+                        <li class="nav-item nav-item-submenu @yield('wallet_layout_select')">
+                            <a href="#" class="nav-link "><i class="fas fa-users"></i> <span>Wallet Management</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="Layouts">
                                 <li class="nav-item">
                                     <a href="{{route('getdata') }}" target="_blank"
