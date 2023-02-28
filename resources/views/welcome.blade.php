@@ -263,18 +263,18 @@
                 processData: false,
                 success: (data) => {
                     $("#bal_id").html(data['balance']);
-                  let html='';
-                    $.each(data['userTransactions'], function( key, value ) {
+                    let html = '';
+                    $.each(data['userTransactions'], function (key, value) {
                         var date = new Date(value['created_at']);
-                        var options = { day: 'numeric', month: 'short', year: 'numeric' };
+                        var options = {day: 'numeric', month: 'short', year: 'numeric'};
                         var formattedDate = date.toLocaleDateString(undefined, options);
-                       html+='<tr>';
+                        html += '<tr>';
                         html += ' <td><span class="text-muted">' + ++key + '</span></td>';
                         html += '<td><span class="text-muted">' + value['id'] + '</span></td>';
                         html += '<td><span class="">' + ((value['service_desc'] === null) ? 'PR' : value['service_desc']) + '</span></td>';
                         html += '<td><span class="">' + ((value['desc'] === null) ? ' ' : value['service_desc']) + '</span></td>';
-                        html += '<td><span class="font-weight-semibold mb-0">' + value['debit'] + '</span></td>';
-                        html += '<td><span class="font-weight-semibold mb-0">' + value['credit'] + '</span></td>';
+                        html += '<td><span class="font-weight-semibold mb-0">' + ((value['debit'] === 0) ? ' ' : value['debit']) + '</span></td>';
+                        html += '<td><span class="font-weight-semibold mb-0">' + ((value['credit'] === 0) ? ' ' : value['credit']) + '</span></td>';
                         html += '<td><span class="badge bg-blue">' + formattedDate + '</span></td>';
                         html += '</tr>';
                     });
@@ -291,7 +291,7 @@
                         html1 += '<td><span class="">' + ((value['service_desc'] === null) ? 'PR' : value['service_desc']) + '</span></td>';
                         html1 += '<td><span class="">' + ((value['desc'] === null) ? ' ' : value['service_desc']) + '</span></td>';
                         html1 += '<td><span class="font-weight-semibold mb-0">' + value['debit'] + '</span></td>';
-                        html1 += '<td><span class="font-weight-semibold mb-0">' + value['credit'] + '</span></td>';
+                        html1 += '<td><span class="font-weight-semibold mb-0"></span></td>';
                         html1 += '<td><span class="badge bg-blue">' + formattedDate + '</span></td>';
                         html1 += '</tr>';
                     });
@@ -306,7 +306,7 @@
                         htmlc += '<td><span class="text-muted">' + value['id'] + '</span></td>';
                         htmlc += '<td><span class="">' + ((value['service_desc'] === null) ? 'PR' : value['service_desc']) + '</span></td>';
                         htmlc += '<td><span class="">' + ((value['desc'] === null) ? ' ' : value['service_desc']) + '</span></td>';
-                        htmlc += '<td><span class="font-weight-semibold mb-0">' + value['debit'] + '</span></td>';
+                        htmlc += '<td><span class="font-weight-semibold mb-0"></span></td>';
                         htmlc += '<td><span class="font-weight-semibold mb-0">' + value['credit'] + '</span></td>';
                         htmlc += '<td><span class="badge bg-blue">' + formattedDate + '</span></td>';
                         htmlc += '</tr>';
