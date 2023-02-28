@@ -269,55 +269,59 @@
                         var options = { day: 'numeric', month: 'short', year: 'numeric' };
                         var formattedDate = date.toLocaleDateString(undefined, options);
                        html+='<tr>';
-                       html+=' <td><span class="text-muted">'+ ++key +'</span></td>';
-                       html+='<td><span class="text-muted">'+value['id']+'</span></td>';
-                       html+='<td><span class="">'+ ((value['service_desc'] === null) ? 'PR' : value['service_desc'])+'</span></td>';
-                       html+='<td><span class="">'+ ((value['desc'] === null) ? ' ' : value['service_desc'])+'</span></td>';
-                       html+='<td><span class="font-weight-semibold mb-0">'+ value['debit']+'</span></td>';
-                       html+='<td><span class="font-weight-semibold mb-0">'+ value['credit']+'</span></td>';
-                       html+='<td><span class="badge bg-blue">'+  formattedDate +'</span></td>';
-                       html+='</tr>';
+                        html += ' <td><span class="text-muted">' + ++key + '</span></td>';
+                        html += '<td><span class="text-muted">' + value['id'] + '</span></td>';
+                        html += '<td><span class="">' + ((value['service_desc'] === null) ? 'PR' : value['service_desc']) + '</span></td>';
+                        html += '<td><span class="">' + ((value['desc'] === null) ? ' ' : value['service_desc']) + '</span></td>';
+                        html += '<td><span class="font-weight-semibold mb-0">' + value['debit'] + '</span></td>';
+                        html += '<td><span class="font-weight-semibold mb-0">' + value['credit'] + '</span></td>';
+                        html += '<td><span class="badge bg-blue">' + formattedDate + '</span></td>';
+                        html += '</tr>';
                     });
                     $('#tbody').html(html);
-                    $.each(data['userPendingChallahData'], function( key, value ) {
+                    var html1 = "";
+                    $.each(data['userPendingChallahData'], function (key, value) {
+                        console.log(value['debit']);
                         var date = new Date(value['created_at']);
-                        var options = { day: 'numeric', month: 'short', year: 'numeric' };
+                        var options = {day: 'numeric', month: 'short', year: 'numeric'};
                         var formattedDate = date.toLocaleDateString(undefined, options);
-                       html='<tr>';
-                       html+=' <td><span class="text-muted">'+ ++key +'</span></td>';
-                       html+='<td><span class="text-muted">'+value['id']+'</span></td>';
-                       html+='<td><span class="">'+ ((value['service_desc'] === null) ? 'PR' : value['service_desc'])+'</span></td>';
-                       html+='<td><span class="">'+ ((value['desc'] === null) ? ' ' : value['service_desc'])+'</span></td>';
-                       html+='<td><span class="font-weight-semibold mb-0">'+ value['debit']+'</span></td>';
-                       html+='<td><span class="font-weight-semibold mb-0">'+ value['credit']+'</span></td>';
-                       html+='<td><span class="badge bg-blue">'+  formattedDate +'</span></td>';
-                       html+='</tr>';
+                        html1 += '<tr>';
+                        html1 += ' <td><span class="text-muted">' + ++key + '</span></td>';
+                        html1 += '<td><span class="text-muted">' + value['id'] + '</span></td>';
+                        html1 += '<td><span class="">' + ((value['service_desc'] === null) ? 'PR' : value['service_desc']) + '</span></td>';
+                        html1 += '<td><span class="">' + ((value['desc'] === null) ? ' ' : value['service_desc']) + '</span></td>';
+                        html1 += '<td><span class="font-weight-semibold mb-0">' + value['debit'] + '</span></td>';
+                        html1 += '<td><span class="font-weight-semibold mb-0">' + value['credit'] + '</span></td>';
+                        html1 += '<td><span class="badge bg-blue">' + formattedDate + '</span></td>';
+                        html1 += '</tr>';
                     });
-                    $('#p-tbody').html(html);
-                    $.each(data['userCreditData'], function( key, value ) {
+                    $('#p-tbody').html(html1);
+                    var htmlc = "";
+                    $.each(data['userCreditData'], function (key, value) {
                         var date = new Date(value['created_at']);
-                        var options = { day: 'numeric', month: 'short', year: 'numeric' };
+                        var options = {day: 'numeric', month: 'short', year: 'numeric'};
                         var formattedDate = date.toLocaleDateString(undefined, options);
-                       html='<tr>';
-                       html+=' <td><span class="text-muted">'+ ++key +'</span></td>';
-                       html+='<td><span class="text-muted">'+value['id']+'</span></td>';
-                       html+='<td><span class="">'+ ((value['service_desc'] === null) ? 'PR' : value['service_desc'])+'</span></td>';
-                       html+='<td><span class="">'+ ((value['desc'] === null) ? ' ' : value['service_desc'])+'</span></td>';
-                       html+='<td><span class="font-weight-semibold mb-0">'+ value['debit']+'</span></td>';
-                       html+='<td><span class="font-weight-semibold mb-0">'+ value['credit']+'</span></td>';
-                       html+='<td><span class="badge bg-blue">'+  formattedDate +'</span></td>';
-                       html+='</tr>';
+                        htmlc += '<tr>';
+                        htmlc += ' <td><span class="text-muted">' + ++key + '</span></td>';
+                        htmlc += '<td><span class="text-muted">' + value['id'] + '</span></td>';
+                        htmlc += '<td><span class="">' + ((value['service_desc'] === null) ? 'PR' : value['service_desc']) + '</span></td>';
+                        htmlc += '<td><span class="">' + ((value['desc'] === null) ? ' ' : value['service_desc']) + '</span></td>';
+                        htmlc += '<td><span class="font-weight-semibold mb-0">' + value['debit'] + '</span></td>';
+                        htmlc += '<td><span class="font-weight-semibold mb-0">' + value['credit'] + '</span></td>';
+                        htmlc += '<td><span class="badge bg-blue">' + formattedDate + '</span></td>';
+                        htmlc += '</tr>';
                     });
-                    $('#c-tbody').html(html);
-                    $('#userDebit').html('<h3 class="font-weight-semibold mb-0">'+data['userDebit']+'</h3>')
-                    $('#userCredit').html('<h3 class="font-weight-semibold mb-0">'+data['userCredit']+'</h3>')
-                    $('#userPendingChallah').html('<h3 class="font-weight-semibold mb-0">'+data['userPendingChallah']+'</h3>')
+                    $('#c-tbody').html(htmlc);
+                    $('#userDebit').html('<h3 class="font-weight-semibold mb-0">' + data['userDebit'] + '</h3>')
+                    $('#userCredit').html('<h3 class="font-weight-semibold mb-0">' + data['userCredit'] + '</h3>')
+                    $('#userPendingChallah').html('<h3 class="font-weight-semibold mb-0">' + data['userPendingChallah'] + '</h3>')
                 },
                 error: function (data) {
                     console.log(data);
                 }
             });
         }
+
         function displayHello() {
             let x = a * b;
             alert(x);
