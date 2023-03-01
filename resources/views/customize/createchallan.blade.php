@@ -1,5 +1,12 @@
 @extends('layouts.master')
-@section('page_title', 'Welcome')
+@section('page_title', 'Generate Challan')
+@section('custom_css')
+@endsection
+@section('page-title','Generate Challan')
+@section('breadcrumb','Generate Challan')
+@section('action_btn')
+    <a class="btn btn-outline-info btn-sm" href="{{route('welcome')}}" > <i class="icon-home4 mr-2"></i>Back</a>
+@endsection
 @section('content')
     <form method="post" action="{{route('challan.store') }}" class="form-horizontal m-t-30">
         @csrf

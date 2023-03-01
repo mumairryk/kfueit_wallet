@@ -1,5 +1,9 @@
 @extends('layouts.master')
-@section('page_title', 'Welcome')
+@section('page_title', 'Credit History')
+@section('custom_css')
+@endsection
+@section('page-title','Credit History')
+@section('breadcrumb','Credit History')
 @section('content')
     <style>
         td {
