@@ -39,7 +39,7 @@
             <div class="card bg-teal-400">
                 <div class="card-body">
                     <div class="d-flex">
-                        <h3 id="bal_id" class="font-weight-semibold mb-0">{{$balance}}</h3>
+                        <h3 id="bal_id" class="font-weight-semibold mb-0">{{$balance}} PKR</h3>
                         <span class="badge bg-teal-800 badge-pill align-self-center ml-auto"></span>
                     </div>
 
@@ -61,7 +61,7 @@
             <div class="card bg-blue-400" >
                 <div class="card-body">
                     <div class="d-flex" id="userDebit">
-                        <h3 class="font-weight-semibold mb-0">{{@$userDebit}}</h3>
+                        <h3 class="font-weight-semibold mb-0">{{@$userDebit}} PKR</h3>
                         <div class="list-icons ml-auto">
                         </div>
                     </div>
@@ -81,7 +81,7 @@
             <div class="card bg-info-400">
                 <div class="card-body">
                     <div class="d-flex" id="userCredit">
-                        <h3 class="font-weight-semibold mb-0">{{@$userCredit}}</h3>
+                        <h3 class="font-weight-semibold mb-0">{{@$userCredit}} PKR</h3>
                         <div class="list-icons ml-auto">
                         </div>
                     </div>
@@ -101,7 +101,7 @@
             <div class="card bg-pink-400">
                 <div class="card-body">
                     <div class="d-flex" id="userPendingChallah">
-                        <h3 class="font-weight-semibold mb-0">{{@$userPendingChallah}}</h3>
+                        <h3 class="font-weight-semibold mb-0">{{@$userPendingChallah}} PKR</h3>
                     </div>
                     <div>
                         User Pending Challah Amount
@@ -118,16 +118,16 @@
     <div class="row row-sortable">
         <div class="col-md-12">
             <!-- Transactions -->
-            <div class="card">
+            <div id="card-one" class="card card-n">
                 <div class="card-header bg-white header-elements-inline">
                     <h6 class="card-title">Top Five Transactions</h6>
                     <div class="header-elements">
                         <div class="list-icons">
-                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" id="list-icons-item-one" data-action="collapse"></a>
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive card-table-n" id="card-table-one">
                     <table class="table text-nowrap">
                         <thead>
                         <tr>
@@ -148,16 +148,16 @@
             <!--Transactions -->
 
             <!--Debit -->
-            <div class="card">
+            <div id="card-two" class="card card-n">
                 <div class="card-header bg-white header-elements-inline">
                     <h6 class="card-title">Top Five Credit</h6>
                     <div class="header-elements">
                         <div class="list-icons">
-                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" id="list-icons-item-two" data-action="collapse"></a>
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive card-table-n" id="card-table-two">
                     <table class="table text-nowrap">
                         <thead>
                         <tr>
@@ -178,17 +178,17 @@
             <!--Debit-->
 
             <!--Credit -->
-            <div class="card">
+            <div id="card-three" class="card card-n">
                 <div class="card-header bg-white header-elements-inline">
                     <h6 class="card-title">Top Five Debit</h6>
                     <div class="header-elements">
                         <div class="list-icons">
-                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" id="list-icons-item-three" data-action="collapse"></a>
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table text-nowrap">
+                <div class="table-responsive card-table-n" id="card-table-three">
+                    <table class="table text-nowrap" >
                         <thead>
                         <tr>
                             <th>Sr#</th>
@@ -208,16 +208,16 @@
             <!--Credit-->
 
             <!--Pending Challah-->
-            <div class="card">
+            <div id="card-four" class="card card-n">
                 <div class="card-header bg-white header-elements-inline">
                     <h6 class="card-title">Top Five Pending Challah</h6>
                     <div class="header-elements">
                         <div class="list-icons">
-                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" id="list-icons-item-four" data-action="collapse"></a>
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive card-table-n" id="card-table-four">
                     <table class="table text-nowrap">
                         <thead>
                         <tr>
@@ -286,6 +286,26 @@
 @section('custom_js')
     <script>
         $(document).ready(function () {
+           $('.card-n').addClass('card-collapsed');
+           $('.card-table-n').addClass('d-none');
+           $('.list-icons-item').addClass('rotate-180');
+           $('#list-icons-item-one').on('click',function(){
+               $('#card-one').removeClass('card-collapsed');
+               $('#card-table-one').removeClass('d-none');
+           });
+           $('#list-icons-item-two').on('click',function(){
+               $('#card-two').removeClass('card-collapsed');
+               $('#card-table-two').removeClass('d-none');
+           });
+           $('#list-icons-item-three').on('click',function(){
+               $('#card-three').removeClass('card-collapsed');
+               $('#card-table-three').removeClass('d-none');
+           });
+           $('#list-icons-item-four').on('click',function(){
+               $('#card-four').removeClass('card-collapsed');
+               $('#card-table-four').removeClass('d-none');
+           });
+
             // setInterval(function () {
             //     ajax_call();
             // }, 5000);
@@ -301,7 +321,7 @@
                 contentType: false,
                 processData: false,
                 success: (data) => {
-                    $("#bal_id").html(data['balance']);
+                    $("#bal_id").html(data['balance']+' PKR');
                     let html = '';
                     $.each(data['userTransactions'], function (key, value) {
                         var date = new Date(value['created_at']);
@@ -373,9 +393,9 @@
                     $('#d-tbody').html(htmld);
                     // Debit
 
-                    $('#userDebit').html('<h3 class="font-weight-semibold mb-0">' + data['userDebit'] + '</h3>')
-                    $('#userCredit').html('<h3 class="font-weight-semibold mb-0">' + data['userCredit'] + '</h3>')
-                    $('#userPendingChallah').html('<h3 class="font-weight-semibold mb-0">' + data['userPendingChallah'] + '</h3>')
+                    $('#userDebit').html('<h3 class="font-weight-semibold mb-0">' + data['userDebit'] + ' PKR</h3>')
+                    $('#userCredit').html('<h3 class="font-weight-semibold mb-0">' + data['userCredit'] + ' PKR</h3>')
+                    $('#userPendingChallah').html('<h3 class="font-weight-semibold mb-0">' + data['userPendingChallah'] + ' PKR</h3>')
                 },
                 error: function (data) {
                     console.log(data);
