@@ -41,57 +41,11 @@
                         <a href="/" class="logo logo-admin"><img src="https://kfueit.edu.pk/uploads/4/ueit-logo-r.png" height="70" alt="logo"></a>
                     </h3>
                     <div class="p-3">
-                        <h4 class="font-18 m-b-5 text-center">Welcome !</h4>
-                        <p class="text-muted text-center">OTP Login to continue Dashboard.</p>
-                        @if(Session::has('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                                <strong>Success!</strong>  {{ Session::get('success') }}
+                            <div class="text-center mb-3">
+                                <i class="icon-exclamation icon-2x text-warning border-warning border-3 rounded-round p-3 mb-3 mt-1"></i>
+                                <h4 class="font-18 m-b-5 text-center">Welcome !</h4>
+                                <h5 class="mb-0">Please Check Your Email !</h5>
                             </div>
-                        @endif
-                        @if(Session::has('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                                <strong>Error!</strong>  {{ Session::get('error') }}
-                            </div>
-                        @endif
-                        @if(Session::has('warning'))
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                                <strong>Error!</strong>  {{ Session::get('warning') }}
-                            </div>
-                        @endif
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        <form method="POST" action="{{ route('otp') }}">
-                            @csrf
-                            <div class="form-group form-group-feedback form-group-feedback-left">
-                                <input type="text" class="form-control @error('otp') is-invalid @enderror" name="otp" value="{{ old('otp') }}" required autocomplete="otp" autofocus placeholder="Enter OTP">
-                                <div class="form-control-feedback">
-                                    <i class="icon-key text-muted"></i>
-                                </div>
-                            </div>
-                            <div class="row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
                 <!-- /login form -->
@@ -103,6 +57,8 @@
 
     </div>
 </div>
+<!-- /page content -->
+<!-- Core JS files -->
 <!-- Core JS files -->
 <script src="{{ asset('master-demo/global_assets/js/main/jquery.min.js')}}"></script>
 <script src="{{ asset('master-demo/global_assets/js/main/bootstrap.bundle.min.js')}}"></script>

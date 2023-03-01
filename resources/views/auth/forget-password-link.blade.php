@@ -41,8 +41,6 @@
                         <a href="/" class="logo logo-admin"><img src="https://kfueit.edu.pk/uploads/4/ueit-logo-r.png" height="70" alt="logo"></a>
                     </h3>
                     <div class="p-3">
-                        <h4 class="font-18 m-b-5 text-center">Welcome !</h4>
-                        <p class="text-muted text-center">OTP Login to continue Dashboard.</p>
                         @if(Session::has('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -76,21 +74,32 @@
                                 </ul>
                             </div>
                         @endif
-                        <form method="POST" action="{{ route('otp') }}">
+                        <form class="login-form" action="{{route('forget.password.update')}}" method="post">
                             @csrf
-                            <div class="form-group form-group-feedback form-group-feedback-left">
-                                <input type="text" class="form-control @error('otp') is-invalid @enderror" name="otp" value="{{ old('otp') }}" required autocomplete="otp" autofocus placeholder="Enter OTP">
+                            <div class="text-center mb-3">
+                                <h4 class="font-18 m-b-5 text-center">Welcome !</h4>
+                                <h5 class="mb-0">Enter New Password</h5>
+                            </div>
+
+                            <div class="form-group form-group-feedback form-group-feedback-right">
+                                <input type="email" name="email" class="form-control" placeholder="Your email">
+                                <div class="form-control-feedback">
+                                    <i class="icon-mail5 text-muted"></i>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-feedback form-group-feedback-right">
+                                <input type="password" name="newpassword" id="newpassword" class="form-control"  value="{{old('newpassword')}}"  required placeholder="Enter new Password">
                                 <div class="form-control-feedback">
                                     <i class="icon-key text-muted"></i>
                                 </div>
                             </div>
-                            <div class="row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
-                                    </button>
+                            <div class="form-group form-group-feedback form-group-feedback-right">
+                                <input type="password" name="confirmpassword" id="confirmpassword" class="form-control"  value="{{old('confirmpassword')}}"  required placeholder="Enter confirm Password">
+                                <div class="form-control-feedback">
+                                    <i class="icon-key text-muted"></i>
                                 </div>
                             </div>
+                            <button type="submit" class="btn bg-blue btn-block"><i class="icon-spinner11 mr-2"></i> Update Password</button>
                         </form>
                     </div>
                 </div>
@@ -103,6 +112,8 @@
 
     </div>
 </div>
+<!-- /page content -->
+<!-- Core JS files -->
 <!-- Core JS files -->
 <script src="{{ asset('master-demo/global_assets/js/main/jquery.min.js')}}"></script>
 <script src="{{ asset('master-demo/global_assets/js/main/bootstrap.bundle.min.js')}}"></script>

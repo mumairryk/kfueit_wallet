@@ -29,6 +29,8 @@ Route::post('authenticate', [LoginController::class, 'authenticate'])->name('aut
 Route::get('redirectTo', [LoginController::class, 'redirectTo'])->name('redirectTo');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::any('otp',[LoginController::class, 'otpLogin'])->name('otp');
+Route::any('forget/password',[LoginController::class, 'forgetPassword'])->name('forget.password');
+Route::any('forget/password/update',[LoginController::class, 'forgetPasswordUpdate'])->name('forget.password.update');
 
     /************************  Register Route ***********************/
 Route::any('register',[RegisterController::class,'index'])->name('register');
