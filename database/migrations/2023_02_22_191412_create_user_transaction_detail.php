@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('user_transaction_detail', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_transaction_detail');
+            $table->integer('user_transaction_id');
             $table->integer('head_id');
             $table->integer('head_amount');
             $table->integer('qty')->nullable();
