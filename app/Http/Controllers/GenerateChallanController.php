@@ -61,12 +61,13 @@ class GenerateChallanController extends Controller
                 'remarks' => 'BANK',
                 'status' => 1
             ]);
+            return $this->download_challan($lastrecordinserted->id);
             //return $lastrecordinserted;
-            $transaction_data = GenerateChallan::with('getuserdata')->where('id', $lastrecordinserted->id)->first();
-            $data = $transaction_data->toArray();
-            // return $transaction_data;
-            //$transaction_data= GenerateChallan::with('getuserdata')->get();
-            return view('customize.challanview', compact('data'));
+//            $transaction_data = GenerateChallan::with('getuserdata')->where('id', $lastrecordinserted->id)->first();
+//            $data = $transaction_data->toArray();
+//            // return $transaction_data;
+//            //$transaction_data= GenerateChallan::with('getuserdata')->get();
+//            return view('customize.challanview', compact('data'));
         }
         //
     }
@@ -139,13 +140,13 @@ class GenerateChallanController extends Controller
     }
     public function post_voucher($challanID)
     {
-        $generateChallanData = GenerateChallan::findOrFail();
+        $generateChallanData = GenerateChallan::findOrFail($challanID);
         $voucher_details['Digital Wallet Top-up'] =  $generateChallanData->debit;
         $userData = $generateChallanData->user;
         $parameter= array(
-            'token'=>'12a@H57$1^&123',
+            'token'=>'53JFU#72Vend',
             'cnic'=>$userData->cnic,
-            'app_code'=>'SCH',
+            'app_code'=>'KFDW',
             'voucher_type_code'=>'KFDW01',
             'ref_id'=>'',
             'name'=>$userData->name,
