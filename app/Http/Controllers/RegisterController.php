@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Rules\CNICValidation;
 
 class RegisterController extends Controller
 {
@@ -15,17 +16,16 @@ class RegisterController extends Controller
            $request->validate([
                'name' => ['required', 'string', 'max:255'],
                'username' => ['required', 'string', 'max:255'],
-               'phone_number' => ['required', 'max:12', 'unique:users,phone_number'],
+               'phone_number' => ['required', 'max:11', 'unique:users,phone_number'],
                'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+               'cnic'=>['required',new CNICValidation],
                'password' => ['required', 'string', 'min:8'],
                'confirmed' => ['required', 'string', 'min:8', 'same:password'],
 
            ]);
-
-
            $data = $request->all();
-           $check = $this->create($data);
-           return redirect()->route('welcome')->withSuccess('You have signed-in');
+          $check = $this->create($data);
+         return redirect()->route('welcome')->with(['Success'=>'You have signed-in']);
        }
        $data['usertypes']=UserTypes::all();
        return view('auth.register',$data);
@@ -40,8 +40,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'username' => $data['username'],
             'phone_number' => $data['phone_number'],
-
-
+            'cnic'=>$data['cnic']
         ]);
     }
 

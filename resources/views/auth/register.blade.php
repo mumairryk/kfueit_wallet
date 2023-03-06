@@ -116,29 +116,15 @@
                                     <i class="icon-phone text-muted"></i>
                                 </div>
                             </div>
+                            <div class="form-group form-group-feedback form-group-feedback-left">
+                                <input type="text" class="form-control" required name="cnic"
+                                       placeholder="Enter Your cnic number" id="cnic"
+                                       value="{{old('cnic')}}">
+                                <div class="form-control-feedback">
+                                    <i class="icon-credit-card2 text-muted"></i>
+                                </div>
+                            </div>
 
-                            {{--                            <div class="form-group form-group-feedback form-group-feedback-left">--}}
-                            {{--                                <select class="form-control form-control-lg" aria-label="Default select example"--}}
-                            {{--                                        name="user_type_id" id="user_type_id">--}}
-                            {{--                                    <option value="" disabled selected>Select your User Type</option>--}}
-                            {{--                                    @foreach($usertypes as $item)--}}
-                            {{--                                        <option--}}
-                            {{--                                            {{(old('user_type_id')==$item->id)?'selected':''}} value="{{$item->id}}">{{$item->name}}</option>--}}
-                            {{--                                    @endforeach--}}
-                            {{--                                </select>--}}
-
-                            {{--                                <div class="form-control-feedback">--}}
-                            {{--                                    <i class="icon-select2 text-muted"></i>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
-                            {{--                            <div class="form-group form-group-feedback form-group-feedback-left">--}}
-                            {{--                                <input type="text" class="form-control" name="user_info" id="user_info"--}}
-                            {{--                                       placeholder="Enter Your Phone Number" id="user_info"--}}
-                            {{--                                       value="{{old('user_info')}}">--}}
-                            {{--                                <div class="form-control-feedback">--}}
-
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
                             <div class="form-group row m-t-20">
                                 <div class="col-sm-12">
                                     <div class="custom-control custom-checkbox">

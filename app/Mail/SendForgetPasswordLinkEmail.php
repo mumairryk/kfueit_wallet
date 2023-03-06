@@ -12,12 +12,15 @@ class SendForgetPasswordLinkEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $encryptedEmail;
+    public $password;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($encryptedEmail,$password)
     {
-
+        $this->password=$password;
+        $this->encryptedEmail=$encryptedEmail;
     }
 
     /**
@@ -25,7 +28,9 @@ class SendForgetPasswordLinkEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('auth.emails.forget-password-link')
+        $data['email']=$this->encryptedEmail;
+        $data['password']=$this->password;
+        return $this->view('auth.emails.forget-password-link',$data)
             ->subject('Your Forget Password');
     }
 }

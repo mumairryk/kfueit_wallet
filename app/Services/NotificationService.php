@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\{SendOTPEmail,SendForgetPasswordLinkEmail};
 class NotificationService
 {
-    public function sendForgetPasswordLinkEmail($email)
+    public function sendForgetPasswordLinkEmail($email,$encryptedEmail,$password)
     {
-       return Mail::to($email)->send(new SendForgetPasswordLinkEmail());
+       return Mail::to($email)->send(new SendForgetPasswordLinkEmail($encryptedEmail,$password));
     }
     public function sendOTPViaEmail($email, $otp)
     {

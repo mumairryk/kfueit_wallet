@@ -27,7 +27,9 @@ class User extends Authenticatable
         'last_login_ip',
         'last_login',
         'password',
-        'user_info'
+        'user_info',
+        'cnic',
+        'rfid_no'
     ];
 
     /**

@@ -30,7 +30,7 @@ Route::get('redirectTo', [LoginController::class, 'redirectTo'])->name('redirect
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::any('otp',[LoginController::class, 'otpLogin'])->name('otp');
 Route::any('forget/password',[LoginController::class, 'forgetPassword'])->name('forget.password');
-Route::any('forget/password/update',[LoginController::class, 'forgetPasswordUpdate'])->name('forget.password.update');
+Route::any('forget/password/update/{data}',[LoginController::class, 'forgetPasswordUpdate'])->name('forget.password.update');
 
     /************************  Register Route ***********************/
 Route::any('register',[RegisterController::class,'index'])->name('register');
@@ -47,7 +47,7 @@ Route::group(['middleware' => ['web', 'auth']],
         Route::get('pending/challah',[UserController::class,'pendingChallah'])->name('pending.challah');
         Route::get('credit/history',[UserController::class,'creditHistory'])->name('credit.history');
         Route::get('debit/history',[UserController::class,'debitHistory'])->name('debit.history');
-
+        Route::any('assign/card',[UserController::class,'assignCard'])->name('assign.card');
         /************************  change password Route ***********************/
         Route::get('change/password',[ChangePasswordController::class,'changePassword'])->name('change.password.index');
         Route::post('change/password/{user}/update',[ChangePasswordController::class,'passwordUpdate'])->name('change.password.update');

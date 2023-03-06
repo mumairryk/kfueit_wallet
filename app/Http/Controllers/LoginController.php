@@ -37,9 +37,6 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
-        //$institutes  = DB::connection('mysql')->select("SELECT * FROM users");
-        //return ($institutes);
-
         $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'exists:users,email'],
             'password' => ['required', 'string', 'min:8'],
@@ -137,7 +134,8 @@ class LoginController extends Controller
             ]);
             $response = User::where(['email' => $request['email']])->first();
             $notification= new NotificationService();
-            $notification->sendForgetPasswordLinkEmail($response->email);
+            $email=Crypt::encryptString($response->email);
+            $notification->sendForgetPasswordLinkEmail($response->email,$email,$response->password);
             return view('auth.massage');
         }
         return view('auth.forget-email');
@@ -156,7 +154,15 @@ class LoginController extends Controller
             session()->flash('success','Update Password Successfully');
             return redirect()->route('login');
         }
-        return view('auth.forget-password-link');
+        $data= explode('=/p\@$$/w%0r&d',$request['data']);
+        $email= Crypt::decryptString($data[0]);
+        $response = User::where(['email' => $email])->first();
+        if ($data[1]== $response['password']) {
+            return view('auth.forget-password-link');
+        }
+
+        \session()->flash('fail','invalid email');
+        return redirect()->back();
     }
 
 }
