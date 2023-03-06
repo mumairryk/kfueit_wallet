@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>KFUEIT Digital Wallet | OTP Verification</title>
+    <title>KFUEIT Digital Wallet | Forget Email</title>
     <meta content="Admin Dashboard" name="KFUEIT" />
     <meta content="ICT Department" name="KFUEIT" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />

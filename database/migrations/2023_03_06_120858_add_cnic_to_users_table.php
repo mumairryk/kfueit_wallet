@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('cnic')->nullable()->after('username');
+            $table->string('uuid')->unique()->nullable()->after('id');
+            $table->time('expiry_date')->nullable();
         });
     }
 
@@ -23,6 +25,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('cnic');
+            $table->dropColumn('uuid');
+            $table->dropColumn('expiry_date');
         });
     }
 };

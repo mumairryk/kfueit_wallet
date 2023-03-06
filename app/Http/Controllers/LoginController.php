@@ -17,6 +17,7 @@ use App\Services\NotificationService;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Crypt;
+use function PHPUnit\Framework\isEmpty;
 use function Symfony\Component\String\s;
 
 class LoginController extends Controller
@@ -37,6 +38,7 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
+
         $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'exists:users,email'],
             'password' => ['required', 'string', 'min:8'],
@@ -134,13 +136,18 @@ class LoginController extends Controller
             ]);
             $response = User::where(['email' => $request['email']])->first();
             $notification= new NotificationService();
-            $email=Crypt::encryptString($response->email);
-            $notification->sendForgetPasswordLinkEmail($response->email,$email,$response->password);
+            $uuid=$response->uuid;
+            $now = Carbon::now();
+            $response->update([
+                'expiry_date'=>Carbon::now()->addMinutes(15)
+            ]);
+            $notification->sendForgetPasswordLinkEmail($response->email,$uuid,);
             return view('auth.massage');
         }
         return view('auth.forget-email');
     }
-    public function forgetPasswordUpdate(Request $request){
+    public function forgetPasswordUpdate(Request $request,$uuid){
+
         if($request->post()){
             $request->validate([
                 'email'=>'required|exists:users,email',
@@ -150,18 +157,17 @@ class LoginController extends Controller
             $response = User::where(['email' => $request['email']])->first();
             $response->update([
                 'password'=>Hash::make($request['newpassword']),
+                'expiry_date' => Carbon::now()
             ]);
+
             session()->flash('success','Update Password Successfully');
             return redirect()->route('login');
         }
-        $data= explode('=/p\@$$/w%0r&d',$request['data']);
-        $email= Crypt::decryptString($data[0]);
-        $response = User::where(['email' => $email])->first();
-        if ($data[1]== $response['password']) {
-            return view('auth.forget-password-link');
+        $response = User::where(['uuid' => $uuid])->first();
+        $now = Carbon::now();
+        if (!is_null($response) && $now->isBefore($response->expiry_date)) {
+            return view('auth.forget-password-link',compact('response'));
         }
-
-        \session()->flash('fail','invalid email');
         return redirect()->back();
     }
 
