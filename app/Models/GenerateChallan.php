@@ -14,7 +14,7 @@ class GenerateChallan extends Model
     protected $primaryKey = 'id';
     protected $guarded = [];
 
-    public function getuserdata()
+    public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
