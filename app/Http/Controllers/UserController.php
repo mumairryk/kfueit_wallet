@@ -63,8 +63,21 @@ class UserController extends Controller
 
     }
 
-    public function assignCard(Request $request){
-//        return view('');
+    public function index(){
+        $data['users']=user::all();
+        return view('user.index',$data);
+    }
+    public function assignCard(Request $request,$uuid) {
+        $data['user']=user::where(['uuid'=>$uuid])->first();
+        if($request->post()){
+            $request->validate([
+                'rfid'=>'required',
+            ]);
+            $data['user']->update(['rfid_no'=>$request->rfid]);
+            session()->flash('success','Rfid Assign Successfully');
+            return redirect()->route('users.index');
+        }
+        return view('user.assign_card',$data);
     }
 
 }

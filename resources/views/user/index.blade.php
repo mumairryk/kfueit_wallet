@@ -1,13 +1,12 @@
 @extends('layouts.master')
 @section('page_title', 'Users')
-@section('navigation-title','Users')
-@section('breadcrumb-title','Users')
-@section('users_layout_select', 'nav-item-open nav-item-expanded')
-@section('user_layout_select', 'active')
+@section('page-title','Users')
+@section('breadcrumb','Users')
+@section('user_main_layout_select', 'nav-item-open nav-item-expanded')
+@section('user_main_layout_select', 'active')
+@section('user_sub_manu_layout_select', 'active')
 {{--@can('user.create')--}}
 @section('top_buttons')
-    <a href="{{route('users.create')}}" class="btn  btn-success btn-labeled btn-labeled-left" data-toggle="tooltip"
-       title="Add New User"><b><i class="icon-plus-circle2 "></i></b><span>Create User</span></a>
 @stop
 {{--@endcan--}}
 @section('content')
@@ -27,7 +26,6 @@
                     <th>Name</th>
                     <th>User Id</th>
                     <th>Email</th>
-                    <th>Roles</th>
                     <th>Created At</th>
                     <th class="text-center">Actions</th>
 
@@ -48,26 +46,20 @@
                                 <td>{{$user->username}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->created_at->diffforHumans()}}</td>
+                                <td class="text-center">
+                                    <div class="list-icons">
+                                        <div class="dropdown">
+                                            <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
 
-{{--                                @if(Auth::user()->hasRole(['Super Admin','Admin']))--}}
-{{--                                    @can('users.edit', 'users.login.instance.user', 'users.role')--}}
-
-                                        <td class="text-center">
-                                            <div class="list-icons">
-                                                <div class="dropdown">
-                                                    <a href="#" class="list-icons-item" data-toggle="dropdown">
-                                                        <i class="icon-menu9"></i>
-                                                    </a>
-
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a href="{{route('assign.card', ['uuid'=>$user->uuid])}}"
-                                                           class="dropdown-item"><i class="icon-pencil7"></i> Assign </a>
-                                                    </div>
-                                                </div>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="{{route('assign.card', ['uuid'=>$user->uuid])}}"
+                                                   class="dropdown-item"><i class="icon-pencil7"></i> Assign </a>
                                             </div>
-                                        </td>
-{{--                                    @endcan--}}
-{{--                                @endif--}}
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                             @endforeach
                         @endif

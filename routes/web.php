@@ -47,7 +47,8 @@ Route::group(['middleware' => ['web', 'auth']],
         Route::get('pending/challah',[UserController::class,'pendingChallah'])->name('pending.challah');
         Route::get('credit/history',[UserController::class,'creditHistory'])->name('credit.history');
         Route::get('debit/history',[UserController::class,'debitHistory'])->name('debit.history');
-        Route::any('assign/card',[UserController::class,'assignCard'])->name('assign.card');
+        Route::get('users',[UserController::class,'index'])->name('users.index');
+        Route::any('assign/card/{uuid}',[UserController::class,'assignCard'])->name('assign.card');
         /************************  change password Route ***********************/
         Route::get('change/password',[ChangePasswordController::class,'changePassword'])->name('change.password.index');
         Route::post('change/password/{user}/update',[ChangePasswordController::class,'passwordUpdate'])->name('change.password.update');
