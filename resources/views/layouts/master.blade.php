@@ -76,7 +76,7 @@
 <div class="navbar navbar-expand-md navbar-dark">
     <div class="navbar-brand">
         <a href="{{route('welcome') }}" class="d-inline-block">
-            <img src="{{asset('master-demo/images/')}}/logo_light.png" alt="">
+            <img src="{{asset('master-demo/images/')}}/wallet-logo.png" alt="" width="100%">
         </a>
     </div>
 
@@ -321,6 +321,7 @@
 
                 <div class="dropdown-menu dropdown-menu-right">
                     <a href="#" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
+                    <a href="{{route('change.password.index')}}" class="dropdown-item"><i class="icon-key"></i> Change Password</a>
                     @if($check_roll_back_action)
                         <a href="{{route('login.roll.back.user',$roll_back_user)}}" class="dropdown-item"><i
                                 class="icon-user-plus"></i>
@@ -381,7 +382,7 @@
                 <div class="page-title d-flex">
                     <h4><a style="color: unset !important" href="{{ url()->previous() }}"><i
                                 class="icon-arrow-left52 mr-2"> </i></a> <span class="font-weight-semibold">Home</span>
-                        - Dashboard</h4>
+                        - @yield('page-title')</h4>
                     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
                 </div>
 
@@ -397,7 +398,7 @@
                     <div class="breadcrumb">
                         <a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i>
                             Home</a>
-                        <span class="breadcrumb-item active">Dashboard</span>
+                        <span class="breadcrumb-item active">@yield('breadcrumb')</span>
                     </div>
 
                     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -424,8 +425,7 @@
 
         <!-- Content area -->
         <div class="content">
-
-
+            @include('partials.error')
             @yield('content')
 
 

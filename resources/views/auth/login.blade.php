@@ -100,7 +100,7 @@
                             </div>
                             <div class="col-md-6 d-flex justify-content-center">
                                 <!-- Simple link -->
-{{--                                <a href="#!">Forgot password?</a>--}}
+                                <a href="{{route('forget.password')}}">Forgot password?</a>
                             </div>
 
                             <div class="col-sm-12 text-right">

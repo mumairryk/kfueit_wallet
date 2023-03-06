@@ -16,6 +16,9 @@ use Modules\Academics\Events\UserCreated;
 use App\Services\NotificationService;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Crypt;
+use function Symfony\Component\String\s;
+
 class LoginController extends Controller
 {
     protected $userService;
@@ -126,10 +129,34 @@ class LoginController extends Controller
         return redirect()->route('login')->with('success', 'Logout Successfully');
     }
 
-    public function test(Request $request, User $user)
+    public function forgetPassword(Request $request, User $user)
     {
-        echo "test";
-        exit;
+        if($request->post()){
+            $request->validate([
+                'email'=>'required|exists:users,email'
+            ]);
+            $response = User::where(['email' => $request['email']])->first();
+            $notification= new NotificationService();
+            $notification->sendForgetPasswordLinkEmail($response->email);
+            return view('auth.massage');
+        }
+        return view('auth.forget-email');
+    }
+    public function forgetPasswordUpdate(Request $request){
+        if($request->post()){
+            $request->validate([
+                'email'=>'required|exists:users,email',
+                'newpassword'=> 'required',
+                'confirmpassword'=> 'required','same:newpassword',
+            ]);
+            $response = User::where(['email' => $request['email']])->first();
+            $response->update([
+                'password'=>Hash::make($request['newpassword']),
+            ]);
+            session()->flash('success','Update Password Successfully');
+            return redirect()->route('login');
+        }
+        return view('auth.forget-password-link');
     }
 
 }

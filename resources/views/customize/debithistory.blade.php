@@ -1,5 +1,10 @@
 @extends('layouts.master')
-@section('page_title', 'Welcome')
+@section('page_title', 'Debit History')
+@section('page_title', 'Debit History')
+@section('custom_css')
+@endsection
+@section('page-title','Debit History')
+@section('breadcrumb','Debit History')
 @section('content')
     <style>
         td {

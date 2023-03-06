@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('page_title', 'Welcome')
+@section('breadcrumb','Welcome')
 @section('custom_css')
     <!-- Core JS files -->
 

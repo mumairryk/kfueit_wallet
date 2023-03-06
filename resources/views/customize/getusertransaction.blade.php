@@ -1,5 +1,9 @@
 @extends('layouts.master')
-@section('page_title', 'Welcome')
+@section('page_title', 'Financial Transactions')
+@section('custom_css')
+@endsection
+@section('page-title','Financial Transactions')
+@section('breadcrumb','Financial Transactions')
 @section('content')
     <style>
         td {

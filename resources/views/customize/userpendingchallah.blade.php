@@ -1,5 +1,9 @@
 @extends('layouts.master')
-@section('page_title', 'Welcome')
+@section('page_title', 'Pending Challan')
+@section('custom_css')
+@endsection
+@section('page-title','Pending Challan')
+@section('breadcrumb','Pending Challan')
 @section('content')
     <style>
         td {
