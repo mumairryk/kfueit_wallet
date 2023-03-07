@@ -64,10 +64,12 @@ class UserController extends Controller
     }
 
     public function index(){
+
         $data['users']=user::all();
         return view('user.index',$data);
     }
     public function assignCard(Request $request,$uuid) {
+
         $data['user']=user::where(['uuid'=>$uuid])->first();
         if($request->post()){
             $request->validate([

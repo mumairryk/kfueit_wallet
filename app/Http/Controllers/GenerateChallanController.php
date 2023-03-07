@@ -117,6 +117,7 @@ class GenerateChallanController extends Controller
     public function download_challan($challanID)
     {
         $voucher=$this->post_voucher($challanID);
+        //echo "<pre>";print_r($voucher);exit;
         $file_path=public_path("uploads/challan/{$challanID}_challan.pdf");
         $data=json_decode($voucher);
 
@@ -143,6 +144,7 @@ class GenerateChallanController extends Controller
         $generateChallanData = GenerateChallan::findOrFail($challanID);
         $voucher_details['Digital Wallet Top-up'] =  $generateChallanData->debit;
         $userData = $generateChallanData->user;
+        //echo "<pre>";print_r($userData);exit;
         $parameter= array(
             'token'=>'53JFU#72Vend',
             'cnic'=>$userData->cnic,

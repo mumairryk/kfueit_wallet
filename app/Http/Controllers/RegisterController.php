@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\UserTypes;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Rules\CNICValidation;
@@ -33,14 +34,41 @@ class RegisterController extends Controller
 
     public function create(array $data)
     {
+        $cnic = $data['cnic'];
+        $student_data = DB::connection('mysql2')
+            ->table('students')
+            ->select('rfid')
+            ->where('cnic', '=', $cnic)
+            ->limit(1)
+            ->get()
+            ->toArray();
 
+        if (!empty($student_data)) {
+            $rfid = $student_data[0]->rfid;
+        } else {
+//             $employees_data = DB::connection('mysql2')
+//                 ->table('mis_employees')
+//                 ->select('rfid')
+//                 ->where('cnic', '=', $cnic)
+//                 ->limit(1)
+//                 ->get()
+//                 ->toArray();
+//            if(!Empty($employees_data)){
+//                $rfid=$employees_data[0]->rfid;
+//            }
+//            else{
+//                $rfid=NULL;
+//            }
+            $rfid = NULL;
+        }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'username' => $data['username'],
             'phone_number' => $data['phone_number'],
-            'cnic'=>$data['cnic']
+            'cnic' => $data['cnic'],
+            'rfid_no' => $rfid
         ]);
     }
 

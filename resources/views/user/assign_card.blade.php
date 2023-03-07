@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{route('assign.card',['uuid'=>$user->id])}}" method="POST" class="form">
+                <form action="{{route('assign.card',['uuid'=>$user->uuid])}}" method="POST" class="form">
                     @csrf
                     <div class="card-body">
                         <div class="">
@@ -29,7 +29,8 @@
                                 <div class="col-lg-12 ">
                                     <div class="form-group subject">
                                         <label class="control-label">&nbsp;{{ trans('Assign Rfid') }}:*</label>
-                                        <input type="text" name="rfid" id="rfid" class="form-control" value="{{old('rfid')}}" required placeholder="Enter rfid">
+                                        <input type="text" name="rfid" id="rfid" class="form-control"
+                                               value="{{old('rfid')}}" required placeholder="Enter rfid">
                                     </div>
                                 </div>
                             </div>

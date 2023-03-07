@@ -27,6 +27,7 @@
                     <th>User Id</th>
                     <th>Email</th>
                     <th>Created At</th>
+                    <th>Rfid No</th>
                     <th class="text-center">Actions</th>
 
                 </tr>
@@ -46,6 +47,7 @@
                                 <td>{{$user->username}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->created_at->diffforHumans()}}</td>
+                                <td>{{@$user->rfid_no}}</td>
                                 <td class="text-center">
                                     <div class="list-icons">
                                         <div class="dropdown">

@@ -16,9 +16,7 @@ use Modules\Academics\Events\UserCreated;
 use App\Services\NotificationService;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Crypt;
-use function PHPUnit\Framework\isEmpty;
-use function Symfony\Component\String\s;
+
 
 class LoginController extends Controller
 {
@@ -168,7 +166,7 @@ class LoginController extends Controller
         if (!is_null($response) && $now->isBefore($response->expiry_date)) {
             return view('auth.forget-password-link',compact('response'));
         }
-        return redirect()->back();
+        return redirect()->back()->with('warning', 'forget password link has been expired.please generate new link');
     }
 
 }

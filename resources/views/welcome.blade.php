@@ -106,7 +106,7 @@
                         <h3 class="font-weight-semibold mb-0">{{@$userPendingChallah}} PKR</h3>
                     </div>
                     <div>
-                        User Pending Challah Amount
+                        User Pending Challan Amount
                     </div>
                 </div>
 
@@ -199,7 +199,7 @@
 
                             <th>Debit</th>
                             <th>Credit</th>
-                            <th>Credit	Date</th>
+                            <th>Credit Date</th>
                         </tr>
                         </thead>
                         <tbody id="d-tbody">
@@ -209,10 +209,10 @@
             </div>
             <!--Credit-->
 
-            <!--Pending Challah-->
+            <!--Pending Challan-->
             <div id="card-four" class="card card-n">
                 <div class="card-header bg-white header-elements-inline">
-                    <h6 class="card-title">Top Five Pending Challah</h6>
+                    <h6 class="card-title">Top Five Pending Challan</h6>
                     <div class="header-elements">
                         <div class="list-icons">
                             <a class="list-icons-item" id="list-icons-item-four" data-action="collapse"></a>
@@ -299,18 +299,18 @@
                $('#card-two').removeClass('card-collapsed');
                $('#card-table-two').removeClass('d-none');
            });
-           $('#list-icons-item-three').on('click',function(){
-               $('#card-three').removeClass('card-collapsed');
-               $('#card-table-three').removeClass('d-none');
-           });
-           $('#list-icons-item-four').on('click',function(){
-               $('#card-four').removeClass('card-collapsed');
-               $('#card-table-four').removeClass('d-none');
-           });
+            $('#list-icons-item-three').on('click', function () {
+                $('#card-three').removeClass('card-collapsed');
+                $('#card-table-three').removeClass('d-none');
+            });
+            $('#list-icons-item-four').on('click', function () {
+                $('#card-four').removeClass('card-collapsed');
+                $('#card-table-four').removeClass('d-none');
+            });
 
-            // setInterval(function () {
-            //     ajax_call();
-            // }, 5000);
+            setInterval(function () {
+                ajax_call();
+            }, 5000);
             ajax_call();
         });
 
