@@ -81,5 +81,4 @@ class UserController extends Controller
         }
         return view('user.assign_card',$data);
     }
-
 }
